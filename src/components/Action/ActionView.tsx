@@ -23,30 +23,30 @@ import {
 } from '../Scene/StatementContext';
 import { motion } from 'framer-motion';
 
-export type ActionViewAnimation = {
+export type ActionBaseAnimation = {
     initial: Variant;
     entrance: Variant;
     exit: Variant;
 };
 
-export interface ActionViewInstance {
+export interface ActionBaseInstance {
     enter: () => void;
     pause: () => void;
     resume: () => void;
 }
 
-interface ActionViewProps {
+interface ActionBaseProps {
     zIndex: number | 'auto';
     behavior: StatementBehavior;
     children: (control: AnimationControls) => ReactNode;
 }
 
-export const ActionView = forwardRef(function ActionView(
-    { children, behavior }: ActionViewProps,
+export const ActionBase = forwardRef(function ActionView(
+    { children, behavior }: ActionBaseProps,
     ref
 ) {
     const { goToNextStatement } = useSceneContext();
-    const { statementIndex, focused } = useStatementContext();
+    const { focused } = useStatementContext();
     const [isPresent, safeToRemove] = usePresence();
     const isMounted = useIsMounted();
 
@@ -68,7 +68,7 @@ export const ActionView = forwardRef(function ActionView(
 
     useImperativeHandle(
         ref,
-        (): ActionViewInstance => ({
+        (): ActionBaseInstance => ({
             enter: () => {
                 if (enteredRef.current) {
                     return false;
@@ -110,12 +110,13 @@ export const ActionView = forwardRef(function ActionView(
                 }
 
                 if (isMounted()) {
-                    setCountdownProgress((prev) => prev + 1);
+                    // setCountdownProgress((prev) => prev + 1);
+                    setCountdownProgress(100);
                 } else if (countdownTimerRef.current) {
                     clearInterval(countdownTimerRef.current);
                     countdownTimerRef.current = undefined;
                 }
-            }, behavior[1].durationMs / 100);
+            }, behavior[1].durationMs );
         }
     }, [entered, focused]);
 

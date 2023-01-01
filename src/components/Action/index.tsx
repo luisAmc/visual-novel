@@ -15,7 +15,7 @@ import {
     StatementBehavior,
     useStatementContext,
 } from '../Scene/StatementContext';
-import { ActionView, ActionViewInstance } from './ActionView';
+import { ActionBase, ActionBaseInstance } from './ActionView';
 
 export interface ActionProps {
     name: string;
@@ -36,7 +36,7 @@ export function Action({
 }: ActionProps) {
     const { register, visible } = useStatementContext();
 
-    const viewRef = useRef<ActionViewInstance>(null);
+    const viewRef = useRef<ActionBaseInstance>(null);
 
     useEffect(() => {
         register({
@@ -127,9 +127,9 @@ export function Action({
     return (
         <AnimatePresence>
             {visible && (
-                <ActionView ref={viewRef} behavior={behavior} zIndex={zIndex}>
+                <ActionBase ref={viewRef} behavior={behavior} zIndex={zIndex}>
                     {children}
-                </ActionView>
+                </ActionBase>
             )}
         </AnimatePresence>
     );

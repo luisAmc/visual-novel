@@ -1,12 +1,12 @@
 import { Action } from '.';
-import { ActionViewAnimation } from './ActionView';
+import { ActionBaseAnimation } from './ActionView';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
 interface CharacterSource {
     uri: string;
-    side: 'left' | 'center' | 'right';
-    animation?: ActionViewAnimation;
+    side?: 'left' | 'center' | 'right';
+    animation?: ActionBaseAnimation;
 }
 
 interface CharacterProps {
@@ -18,7 +18,10 @@ export function Character({ srcs }: CharacterProps) {
         <Action
             name="Character"
             behavior={['skippable_timed', { durationMs: 100 }]}
-            showUntil={(statement) => statement.actionName === 'Background'}
+            showUntil={(statement) =>
+                statement.actionName === 'Character' ||
+                statement.actionName === 'ClearCharacter'
+            }
         >
             {(controls) => (
                 <>
@@ -47,15 +50,43 @@ export function Character({ srcs }: CharacterProps) {
                             <img
                                 src={src.uri}
                                 alt=""
-                                className={clsx('absolute top-52 scale-150', {
-                                    'left-20': src.side === 'left',
-                                    'left-1/2': src.side === 'center',
-                                    'right-20': src.side === 'right',
-                                })}
+                                className={clsx(
+                                    'absolute top-52 scale-150',
+                                    {
+                                        'left-20': src.side === 'left',
+                                        'left-1/2': src.side === 'center',
+                                        'right-20': src.side === 'right',
+                                    },
+                                    !src.side &&
+                                        'left-0 right-0 ml-auto mr-auto'
+                                )}
                             />
                         </motion.div>
                     ))}
                 </>
+            )}
+        </Action>
+    );
+}
+
+export function ClearCharacter() {
+    return (
+        <Action
+            name="ClearCharacter"
+            behavior={['skippable_timed', { durationMs: 100 }]}
+        >
+            {(controls) => (
+                <motion.div
+                    variants={{
+                        initial: { opacity: 0 },
+                        entrance: {
+                            opacity: 1,
+                            transition: { duration: 1 },
+                        },
+                    }}
+                    initial="initial"
+                    animate={controls}
+                ></motion.div>
             )}
         </Action>
     );

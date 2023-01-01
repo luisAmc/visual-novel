@@ -1,10 +1,10 @@
 import { Action } from '.';
-import { ActionViewAnimation } from './ActionView';
+import { ActionBaseAnimation } from './ActionView';
 import { motion } from 'framer-motion';
 
 interface BackgroundSource {
     uri: string;
-    animation?: ActionViewAnimation;
+    animation?: ActionBaseAnimation;
 }
 
 interface BackgroundProps {
@@ -18,7 +18,6 @@ export function Background({ src, durationMs = 800 }: BackgroundProps) {
     return (
         <Action
             name="Background"
-            // behavior={['skippable_timed', { durationMs }]}
             showUntil={(statement) => statement.actionName === 'Background'}
         >
             {(controls) => (
