@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { SceneId, Scenes } from '.';
+import { SceneProvider } from '../Scene/SceneContext';
 import { useGameContext } from './GameContext';
 
 export interface GameBaseProps {
@@ -13,9 +14,9 @@ export function GameBase({
     initialSceneId,
     children = (render) => render(),
 }: GameBaseProps) {
-    console.log({ initialSceneId, scenes });
-
     const { currentLocation } = useGameContext();
+
+    console.log({ initialSceneId, currentLocation, scenes });
 
     return (
         <>
@@ -24,7 +25,9 @@ export function GameBase({
                     {Object.entries<any>(scenes).map(
                         ([sceneId, SceneComponent]) =>
                             sceneId === currentLocation.sceneId && (
-                                <SceneComponent key={sceneId} />
+                                <SceneProvider key={sceneId} sceneId={sceneId}>
+                                    <SceneComponent />
+                                </SceneProvider>
                             )
                     )}
                 </div>

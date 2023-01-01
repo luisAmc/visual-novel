@@ -1,3 +1,12 @@
-import { Game } from 'src/components/Game';
+// import dynamic from 'next/dynamic';
 
-export default Game;
+// const Game = dynamic(
+//     () => import('src/components/Game').then((component) => component.Game),
+//     { ssr: false }
+// );
+
+// export default Game;
+
+import { TestGame } from 'src/components/TestGame';
+
+export default TestGame;
