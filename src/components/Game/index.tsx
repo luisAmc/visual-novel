@@ -1,9 +1,20 @@
+import { Background } from '../Action/Background';
 import { ComponentType } from 'react';
 import { GameBase } from './GameBase';
 import { GameProvider } from './GameContext';
+import { Scene } from '../Scene';
+
+import BACKGROUND_1 from '/public/bg-1.jpg';
+import BACKGROUND_2 from '/public/bg-2.jpg';
 
 function SceneTest() {
-    return <div>SceneTest</div>;
+    return (
+        <Scene>
+            <Background src={BACKGROUND_1.src} />
+            
+            <Background src={BACKGROUND_2.src} />
+        </Scene>
+    );
 }
 
 const scenes = prepareScenes({ SceneTest });
@@ -20,7 +31,13 @@ export function Game() {
     return (
         <div className="flex h-screen items-center justify-center">
             <GameProvider initialSceneId="Test" onGoHome={onGoHome}>
-                <GameBase initialSceneId="Test" scenes={scenes} />
+                <GameBase initialSceneId="Test" scenes={scenes}>
+                    {(render) => (
+                        <div className="flex h-[720px] w-[1280px] flex-col bg-red-50">
+                            {render()}
+                        </div>
+                    )}
+                </GameBase>
             </GameProvider>
         </div>
     );
