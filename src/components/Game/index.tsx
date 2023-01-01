@@ -1,18 +1,18 @@
 import { Background } from '../Action/Background';
-import { Character } from '../Action/Character';
+import { Character, ClearCharacter } from '../Action/Character';
 import { ComponentType } from 'react';
 import { GameBase } from './GameBase';
 import { GameProvider } from './GameContext';
 import { Scene } from '../Scene';
 import { Text } from '../Action/Text';
+import { ClearTextBox, TextBox } from '../Action/TextBox';
 
 import BACKGROUND_1 from '/public/bg-1.jpg';
 import BACKGROUND_2 from '/public/bg-2.jpg';
 import CHARACTER_1 from '/public/char-1.png';
 import CHARACTER_2 from '/public/char-2.png';
-import { TextBox } from '../Action/TextBox';
 
-function SceneTest() {
+function SceneTest1() {
     return (
         <Scene>
             <Background src={BACKGROUND_1.src} />
@@ -50,12 +50,62 @@ function SceneTest() {
                 Donec vitae nulla quis enim maximus vestibulum.
             </Text>
 
+            <ClearTextBox />
+
+            <ClearCharacter />
+
+            <Character srcs={[{ uri: CHARACTER_1.src }]} />
+
+            <TextBox />
+
+            <Text speaker="Character 1">
+                Class aptent taciti sociosqu ad litora.
+            </Text>
+
             <Background src={BACKGROUND_2.src} />
+
+            <Character srcs={[{ uri: CHARACTER_1.src }]} />
+
+            <TextBox />
+
+            <Text speaker="Character 1">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque feugiat ullamcorper aliquam.
+            </Text>
+
+            <Text>
+                Donec diam quam, fermentum sed maximus nec, ullamcorper posuere
+                nisl. Cras orci velit, dictum sed luctus id, varius a lorem.
+                Donec vitae nulla quis enim maximus vestibulum.
+            </Text>
         </Scene>
     );
 }
 
-const scenes = prepareScenes({ SceneTest });
+function SceneTest2() {
+    return (
+        <Scene>
+            <Background src={BACKGROUND_2.src} />
+
+            <Character srcs={[{ uri: CHARACTER_1.src }]} />
+
+            <TextBox />
+
+            <Text speaker="Character 1">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque feugiat ullamcorper aliquam.
+            </Text>
+
+            <Text>
+                Donec diam quam, fermentum sed maximus nec, ullamcorper posuere
+                nisl. Cras orci velit, dictum sed luctus id, varius a lorem.
+                Donec vitae nulla quis enim maximus vestibulum.
+            </Text>
+        </Scene>
+    );
+}
+
+const scenes = prepareScenes({ SceneTest1, SceneTest2 });
 
 type GameScenes = typeof scenes;
 
@@ -68,8 +118,8 @@ export function Game() {
 
     return (
         <div className="flex h-screen items-center justify-center">
-            <GameProvider initialSceneId="Test" onGoHome={onGoHome}>
-                <GameBase initialSceneId="Test" scenes={scenes}>
+            <GameProvider initialSceneId="Test1" onGoHome={onGoHome}>
+                <GameBase initialSceneId="Test1" scenes={scenes}>
                     {(render) => (
                         <div className="flex h-[720px] w-[1280px] flex-col bg-red-50">
                             {render()}
