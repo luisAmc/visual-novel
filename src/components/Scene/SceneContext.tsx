@@ -122,7 +122,18 @@ export function SceneProvider({ sceneId, children }: SceneProviderProps) {
                     return;
                 }
 
-                goToNextStatement();
+                const action = statementByIndex.get(focusedStatementIndex);
+                if (action?.behavior[0].startsWith('skippable')) {
+                    const focusedStatement = statementByIndex.get(
+                        focusedStatementIndex
+                    );
+
+                    const entered = focusedStatement?.enter() ?? false;
+
+                    if (!entered) {
+                        goToNextStatement();
+                    }
+                }
             }}
             className="relative flex-1 select-none"
         >

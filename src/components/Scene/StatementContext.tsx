@@ -8,10 +8,16 @@ import {
 } from 'react';
 import { useSceneContext } from './SceneContext';
 
+export type StatementBehavior =
+    | ['skippable_timed', { durationMs: number }]
+    | ['skippable_static']
+    | ['non_skippable'];
+
 export interface Statement {
     index: number;
     label: string | null;
     actionName: string;
+    behavior: StatementBehavior;
 
     /**
      * number: the amount of statements until this statement is hidden
@@ -20,6 +26,7 @@ export interface Statement {
      */
     showUntil: number | ((statement: Statement) => boolean);
     next: number | string;
+    enter: () => void;
 }
 
 interface StatementContextType {

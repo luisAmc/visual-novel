@@ -10,7 +10,11 @@ import {
 } from 'framer-motion';
 import { ReactNode, useEffect, useRef } from 'react';
 import useEventCallback from 'use-event-callback';
-import { Statement, useStatementContext } from '../Scene/StatementContext';
+import {
+    Statement,
+    StatementBehavior,
+    useStatementContext,
+} from '../Scene/StatementContext';
 import { ActionView, ActionViewInstance } from './ActionView';
 
 export interface ActionProps {
@@ -18,6 +22,7 @@ export interface ActionProps {
     showUntil?: number | ((statement: Statement) => boolean);
     next?: number | string;
     zIndex?: number | 'auto';
+    behavior?: StatementBehavior;
     children: (controls: AnimationControls) => ReactNode;
 }
 
@@ -26,6 +31,7 @@ export function Action({
     showUntil = 0,
     next = 1,
     zIndex = 'auto',
+    behavior = ['skippable_static'],
     children,
 }: ActionProps) {
     const { register, visible } = useStatementContext();
@@ -35,8 +41,10 @@ export function Action({
     useEffect(() => {
         register({
             actionName,
+            behavior,
             showUntil,
             next,
+            enter: () => viewRef.current?.enter() ?? false,
         });
     }, [actionName, showUntil, next, register]);
 
@@ -119,7 +127,7 @@ export function Action({
     return (
         <AnimatePresence>
             {visible && (
-                <ActionView ref={viewRef} zIndex={zIndex}>
+                <ActionView ref={viewRef} behavior={behavior} zIndex={zIndex}>
                     {children}
                 </ActionView>
             )}

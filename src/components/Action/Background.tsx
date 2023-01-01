@@ -12,12 +12,13 @@ interface BackgroundProps {
     durationMs?: number;
 }
 
-export function Background({ src, durationMs = 4000 }: BackgroundProps) {
+export function Background({ src, durationMs = 800 }: BackgroundProps) {
     const normalizedSource = typeof src === 'object' ? src : { uri: src };
 
     return (
         <Action
             name="Background"
+            // behavior={['skippable_timed', { durationMs }]}
             showUntil={(statement) => statement.actionName === 'Background'}
         >
             {(controls) => (
