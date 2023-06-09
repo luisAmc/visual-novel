@@ -1,3 +1,5 @@
+'use client';
+
 import { AnimatePresence, AnimationControls } from 'framer-motion';
 import {
   Statement,
@@ -5,10 +7,12 @@ import {
   useStatement
 } from '../Statement/StatementContext';
 import { ReactNode, useEffect, useRef } from 'react';
-import { BaseAction, BaseActionInstance } from './BaseAction';
+import { BaseAction, BaseActionInstance, BaseActionProps } from './BaseAction';
 import { useMountEffect, useUnmountEffect } from '@react-hookz/web';
 
-interface ActionProps extends Partial<Pick<Statement, 'step' | 'until'>> {
+export interface ActionProps
+  extends Partial<Pick<Statement, 'step' | 'until'>>,
+    Pick<BaseActionProps, 'audioControls'> {
   name: string;
   zIndex?: number | 'auto';
   statementType?: StatementType;
@@ -21,6 +25,7 @@ export function Action({
   step = 1,
   zIndex = 'auto',
   statementType = { variation: 'skippable_static' },
+  audioControls,
   children
 }: ActionProps) {
   const { register, visible } = useStatement();
@@ -57,7 +62,12 @@ export function Action({
   return (
     <AnimatePresence>
       {visible && (
-        <BaseAction ref={viewRef} zIndex={zIndex} statementType={statementType}>
+        <BaseAction
+          ref={viewRef}
+          zIndex={zIndex}
+          statementType={statementType}
+          audioControls={audioControls}
+        >
           {children}
         </BaseAction>
       )}

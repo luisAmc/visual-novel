@@ -19,6 +19,7 @@ import { useScene } from '../Scene/SceneContext';
 import { StatementType, useStatement } from '../Statement/StatementContext';
 import { useIsMounted } from '@react-hookz/web';
 import clsx from 'clsx';
+import useSound from 'use-sound';
 
 export type BaseActionAnimation = {
   initial: Variant;
@@ -32,20 +33,21 @@ export interface BaseActionInstance {
   resume: () => void;
 }
 
-interface BaseActionProps {
+export interface BaseActionProps {
   zIndex: number | 'auto';
   statementType: StatementType;
+  audioControls?: ReturnType<typeof useSound>[0];
   children: (control: AnimationControls) => ReactNode;
 }
 
 export const BaseAction = forwardRef(function BaseAction(
-  { statementType, children }: BaseActionProps,
+  { statementType, zIndex, audioControls, children }: BaseActionProps,
   ref
 ) {
   const controls = useAnimation();
 
   const { goToNextStatement } = useScene();
-  const { focused } = useStatement();
+  const { statementIndex, focused } = useStatement();
 
   const [isPresent, safeToRemove] = usePresence();
   const isMounted = useIsMounted();
@@ -86,6 +88,9 @@ export const BaseAction = forwardRef(function BaseAction(
       requestAnimationFrame(() =>
         controls.start('entrance').then(() => setEntered(true))
       );
+
+      console.log('trying to play sound');
+      audioControls?.();
     } else {
       controls.start('exit').then(() => safeToRemove());
     }
@@ -121,7 +126,10 @@ export const BaseAction = forwardRef(function BaseAction(
   }, [countdownProgress]);
 
   return (
-    <div className='absolute h-full w-full'>
+    <div
+      className='absolute inset-0 flex'
+      style={{ zIndex: zIndex === 'auto' ? statementIndex : zIndex }}
+    >
       {children(controls)}
 
       <AnimatePresence>
@@ -133,10 +141,10 @@ export const BaseAction = forwardRef(function BaseAction(
             value={countdownProgress}
             max={100}
             className={clsx(
-              'absolute left-0 bottom-0 z-[100] h-1 w-full appearance-none rounded-none',
-              '[&::-moz-progress-bar]:bg-slate-500',
-              '[&::-webkit-progress-bar]:rounded-none [&::-webkit-progress-bar]:bg-slate-500/20',
-              '[&::-webkit-progress-value]:rounded-none [&::-webkit-progress-value]:bg-slate-500'
+              'absolute left-0 top-0 z-[100] h-1 w-full appearance-none rounded-none',
+              '[&::-moz-progress-bar]:bg-emerald-500',
+              '[&::-webkit-progress-bar]:rounded-none [&::-webkit-progress-bar]:bg-emerald-500/20',
+              '[&::-webkit-progress-value]:rounded-none [&::-webkit-progress-value]:bg-emerald-500'
             )}
           />
         )}
