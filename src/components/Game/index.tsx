@@ -36,7 +36,7 @@ export function Game() {
   const scenes = new Map<string, ReactNode>([
     [
       GameScenes.START,
-      <Scene>
+      <Scene key={GameScenes.START}>
         <TitleScreen />
 
         <Background src={BACKGROUND_ROOM.src} />
@@ -68,7 +68,10 @@ export function Game() {
         <Decision
           options={[
             { label: 'Me lavo las manos' },
-            { label: 'Me regreso a la cama', to: GameScenes.GOOD_ENDING }
+            {
+              label: 'Me regreso a la cama',
+              to: GameScenes.GOOD_ENDING as SceneId
+            }
           ]}
         >
           ¿Y ahora?
@@ -105,7 +108,7 @@ export function Game() {
         <Decision
           options={[
             { label: 'Investigo' },
-            { label: 'Nop, nop', to: GameScenes.GOOD_ENDING }
+            { label: 'Nop, nop', to: GameScenes.GOOD_ENDING as SceneId }
           ]}
         >
           ...
@@ -126,7 +129,7 @@ export function Game() {
     ],
     [
       GameScenes.GOOD_ENDING,
-      <Scene>
+      <Scene key={GameScenes.GOOD_ENDING}>
         <Background src={BACKGROUND_ROOM.src} />
 
         <Text>Bueno... a dormir</Text>
@@ -141,7 +144,10 @@ export function Game() {
 
   return (
     <div className='relative h-screen aspect-video bg-gray-900 overflow-hidden'>
-      <GameProvider initialSceneId={GameScenes.START} scenes={scenes}>
+      <GameProvider
+        initialSceneId={GameScenes.START as SceneId}
+        scenes={scenes}
+      >
         {(render) => <div>{render()}</div>}
       </GameProvider>
     </div>

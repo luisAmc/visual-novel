@@ -1,9 +1,10 @@
 import { Action } from '.';
 import { motion } from 'framer-motion';
 import { useGame } from '../Game/GameContext';
+import { SceneId } from '../Game';
 
 interface DecisionProps {
-  options: Array<{ label: string; to?: string }>;
+  options: Array<{ label: string; to?: SceneId }>;
   children: string;
 }
 

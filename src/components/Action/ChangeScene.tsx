@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
 import { Action } from '.';
 import { useGame } from '../Game/GameContext';
 import { motion } from 'framer-motion';
+import { SceneId } from '../Game';
 
-export function ChangeScene({ to }: { to: string }) {
+export function ChangeScene({ to }: { to: SceneId }) {
   const { goToScene } = useGame();
 
   return (

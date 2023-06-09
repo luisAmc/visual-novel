@@ -1,13 +1,7 @@
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState
-} from 'react';
-import { GameLocation, SceneId, createGameHistory } from './GameState';
+import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
+import { GameLocation, createGameHistory } from './GameState';
 import { SceneProvider } from '../Scene/SceneContext';
+import { SceneId } from '.';
 
 interface GameContextType {
   currentLocation: GameLocation;
