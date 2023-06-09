@@ -111,7 +111,7 @@ export function Game() {
             { label: 'Nop, nop', to: GameScenes.GOOD_ENDING as SceneId }
           ]}
         >
-          ...
+          ¿Muevo la cortina para investigar?
         </Decision>
 
         <Sound audioControls={screamV1Control[0]} />
