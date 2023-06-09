@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Action } from '.';
 import { useGame } from '../Game/GameContext';
 import { motion } from 'framer-motion';
@@ -16,7 +17,10 @@ export function ChangeScene({ to }: { to: string }) {
             entrance: { opacity: 1 },
             exit: { opacity: 0 }
           }}
-          onClick={() => goToScene(to)}
+          onClick={(event) => {
+            event.stopPropagation();
+            goToScene(to);
+          }}
           className='z-20 rounded-md bg-gray-800/60 text-gray-50 px-3 py-2'
         >
           {to}
