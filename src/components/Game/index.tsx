@@ -53,7 +53,7 @@ export function Game() {
 
         <Background src={BACKGROUND_BATHROOM_DOOR.src} />
 
-        <Text src={IMAGE_SWITCH.src}>*click*</Text>
+        <Text>*enciende la luz del baño*</Text>
 
         <Background src={BACKGROUND_BATHROOM.src} />
 
