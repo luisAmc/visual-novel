@@ -1,14 +1,14 @@
 'use client';
 
 import { ReactNode } from 'react';
+import { Background } from '../Action/Background';
+import { Decision } from '../Action/Decision';
 import { GameProvider } from './GameContext';
 import { Scene } from '../Scene';
-import { Text } from '../Action/Text';
-import { Background } from '../Action/Background';
-import { TitleScreen } from '../Action/TitleScreen';
-import { Decision } from '../Action/Decision';
-import { Sound } from '../Action/Sound';
 import { ScreenText } from '../Action/ScreenText';
+import { Sound } from '../Action/Sound';
+import { Text } from '../Action/Text';
+import { TitleScreen } from '../Action/TitleScreen';
 import useSound from 'use-sound';
 
 import BACKGROUND_ROOM from '/public/assets/images/room.png';
@@ -21,6 +21,13 @@ import BACKGROUND_SHADOW from '/public/assets/images/shadow.png';
 import BACKGROUND_SHADOW_V2 from '/public/assets/images/shadowV2.png';
 import IMAGE_SWITCH from '/public/assets/images/switch.png';
 
+const GameScenes = {
+  START: 'Scene_Start',
+  GOOD_ENDING: 'Scene_Good_Ending'
+};
+
+export type SceneId = keyof typeof GameScenes;
+
 export function Game() {
   const whispersControl = useSound('/assets/sounds/eerie_sounds.aac');
   const screamV1Control = useSound('/assets/sounds/scream.aac');
@@ -28,7 +35,7 @@ export function Game() {
 
   const scenes = new Map<string, ReactNode>([
     [
-      'Scene_Start',
+      GameScenes.START,
       <Scene>
         <TitleScreen />
 
@@ -61,7 +68,7 @@ export function Game() {
         <Decision
           options={[
             { label: 'Me lavo las manos' },
-            { label: 'Me regreso a la cama', to: 'Scene_Good_Ending' }
+            { label: 'Me regreso a la cama', to: GameScenes.GOOD_ENDING }
           ]}
         >
           ¿Y ahora?
@@ -98,7 +105,7 @@ export function Game() {
         <Decision
           options={[
             { label: 'Investigo' },
-            { label: 'Nop, nop', to: 'Scene_Good_Ending' }
+            { label: 'Nop, nop', to: GameScenes.GOOD_ENDING }
           ]}
         >
           ...
@@ -118,7 +125,7 @@ export function Game() {
       </Scene>
     ],
     [
-      'Scene_Good_Ending',
+      GameScenes.GOOD_ENDING,
       <Scene>
         <Background src={BACKGROUND_ROOM.src} />
 
@@ -134,7 +141,7 @@ export function Game() {
 
   return (
     <div className='relative h-screen aspect-video bg-gray-900 overflow-hidden'>
-      <GameProvider initialSceneId='Scene_Start' scenes={scenes}>
+      <GameProvider initialSceneId={GameScenes.START} scenes={scenes}>
         {(render) => <div>{render()}</div>}
       </GameProvider>
     </div>

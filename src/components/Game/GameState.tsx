@@ -1,4 +1,4 @@
-export type SceneId = string;
+import { SceneId } from ".";
 
 export interface GameLocation {
   sceneId: SceneId;
