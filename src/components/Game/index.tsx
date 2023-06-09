@@ -11,15 +11,15 @@ import { Text } from '../Action/Text';
 import { TitleScreen } from '../Action/TitleScreen';
 import useSound from 'use-sound';
 
-import BACKGROUND_ROOM from '/public/assets/images/room.png';
-import BACKGROUND_BATHROOM_DOOR from '/public/assets/images/bathroom_door.png';
-import BACKGROUND_BATHROOM from '/public/assets/images/bathroom.png';
-import BACKGROUND_TOILET from '/public/assets/images/toilet.png';
-import BACKGROUND_SINK from '/public/assets/images/sink.png';
-import BACKGROUND_SHOWER_CURTAIN from '/public/assets/images/shower_curtain.png';
-import BACKGROUND_SHADOW from '/public/assets/images/shadow.png';
-import BACKGROUND_SHADOW_V2 from '/public/assets/images/shadowV2.png';
-import IMAGE_SWITCH from '/public/assets/images/switch.png';
+import BACKGROUND_ROOM from '/public/assets/images/room.webp';
+import BACKGROUND_BATHROOM_DOOR from '/public/assets/images/bathroom_door.webp';
+import BACKGROUND_BATHROOM from '/public/assets/images/bathroom.webp';
+import BACKGROUND_TOILET from '/public/assets/images/toilet.webp';
+import BACKGROUND_SINK from '/public/assets/images/sink.webp';
+import BACKGROUND_SHOWER_CURTAIN from '/public/assets/images/shower_curtain.webp';
+import BACKGROUND_SHADOW from '/public/assets/images/shadow.webp';
+import BACKGROUND_SHADOW_V2 from '/public/assets/images/shadowV2.webp';
+import IMAGE_SWITCH from '/public/assets/images/switch.webp';
 
 const GameScenes = {
   START: 'Scene_Start',

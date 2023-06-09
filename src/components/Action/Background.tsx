@@ -33,7 +33,7 @@ export function Background({ src, durationMs = 500 }: BackgroundProps) {
             }
           }}
         >
-          <img src={src} alt='background' />
+          <img src={src} alt='background' className='h-full aspect-video' />
         </motion.div>
       )}
     </Action>

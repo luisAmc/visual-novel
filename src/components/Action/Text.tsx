@@ -29,7 +29,7 @@ export function Text({ children, src }: TextProps) {
           }}
           className='pointer-events-none absolute inset-0'
         >
-          {src && <img src={src} alt='background' />}
+          {src && <img src={src} alt='background' className='shadow-md shadow-gray-700' />}
 
           <div className='absolute inset-x-12 bottom-12 h-52 rounded-md bg-slate-800/80'>
             <div className='px-12 py-8 text-5xl'>{children}</div>
