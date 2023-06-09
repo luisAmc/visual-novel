@@ -2,10 +2,11 @@ import { Action } from '.';
 import { motion } from 'framer-motion';
 
 interface TextProps {
+  src?: string;
   children: string;
 }
 
-export function Text({ children }: TextProps) {
+export function Text({ children, src }: TextProps) {
   return (
     <Action name='Text'>
       {(controls) => (
@@ -28,9 +29,11 @@ export function Text({ children }: TextProps) {
           }}
           className='pointer-events-none absolute inset-0'
         >
+          {src && <img src={src} alt='background' />}
+
           <div className='absolute inset-x-12 bottom-12 h-52 rounded-md bg-slate-800/80'>
-            <div className='p-6 text-slate-50 text-lg'>{children}</div>
-            <div className='absolute text-slate-50 text-xl animate-pulse right-12 bottom-12'>
+            <div className='px-12 py-8 text-5xl'>{children}</div>
+            <div className='absolute text-xl animate-pulse right-12 bottom-12'>
               ▶
             </div>
           </div>
