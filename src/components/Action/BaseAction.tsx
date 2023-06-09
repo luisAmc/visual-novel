@@ -89,7 +89,6 @@ export const BaseAction = forwardRef(function BaseAction(
         controls.start('entrance').then(() => setEntered(true))
       );
 
-      console.log('trying to play sound');
       audioControls?.();
     } else {
       controls.start('exit').then(() => safeToRemove());

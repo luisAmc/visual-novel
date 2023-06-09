@@ -16,10 +16,6 @@ interface SceneProps {
 export function Scene({ children }: SceneProps) {
   const statements = useMemo(() => unwrapStatements(children), [children]);
 
-  useEffect(() => {
-    console.log("Scene's statements", { statements });
-  }, [statements]);
-
   return (
     <>
       {statements.map((child, index) => (

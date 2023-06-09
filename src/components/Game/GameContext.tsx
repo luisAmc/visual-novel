@@ -35,10 +35,6 @@ export function GameProvider({
     statementIndex: 0
   });
 
-  useEffect(() => {
-    console.log({ currentLocation });
-  }, [currentLocation]);
-
   const [history] = useState(() =>
     createGameHistory({
       initialLocations: [currentLocation],

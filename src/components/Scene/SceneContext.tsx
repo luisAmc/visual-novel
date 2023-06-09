@@ -91,14 +91,10 @@ export function SceneProvider({ sceneId, children }: SceneProviderProps) {
 
         const statement = statementByIndex.get(focusedStatementIndex);
 
-        console.log({ targetContained, statement });
-
         if (statement?.type.variation.startsWith('skippable')) {
           const focusedStatement = statementByIndex.get(focusedStatementIndex);
 
           const entered = focusedStatement?.enter() ?? false;
-
-          console.log({ focusedStatement, entered });
 
           if (!entered) {
             goToNextStatement();

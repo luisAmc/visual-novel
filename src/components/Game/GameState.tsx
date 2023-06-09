@@ -22,8 +22,6 @@ export function createGameHistory({
 
   return {
     push: (newLocation) => {
-console.log({newLocation})
-
       locations = [...locations, newLocation];
       onLocationsChange(locations[locations.length - 1]);
     }
