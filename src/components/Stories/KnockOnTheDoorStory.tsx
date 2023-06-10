@@ -164,6 +164,7 @@ export function KnockOnTheDoorStory() {
 
         <Text>¿Aló? ¿Quien habla?</Text>
         <Text>...</Text>
+        <Text>...</Text>
         <Text>*silencio*</Text>
 
         <Sound audioControls={knockFiveControls[0]} />
@@ -207,6 +208,8 @@ export function KnockOnTheDoorStory() {
 
         <Text>...</Text>
         <Text>¿Será que están esperando que me mueva? Tengo que revisar.</Text>
+
+        <Background src={BACKGROUND_PEEPHOLE.src} />
 
         <Sound audioControls={screamControl[0]} />
         <Background instant src={BACKGROUND_PERSON.src} durationMs={800} />
