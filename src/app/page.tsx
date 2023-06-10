@@ -1,9 +1,5 @@
-import { Game } from '@/components/Game';
+import { Stories } from '@/components/Stories';
 
 export default function Home() {
-  return (
-    <main className='flex min-h-screen items-center justify-center'>
-      <Game />
-    </main>
-  );
+  return <Stories />;
 }

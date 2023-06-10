@@ -15,6 +15,7 @@
 //   );
 // }
 
+import clsx from 'clsx';
 import './globals.css';
 import localFont from 'next/font/local';
 
@@ -30,7 +31,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={chillerFont.className}>{children}</body>
+      <body
+        className={clsx(
+          chillerFont.className,
+          'flex min-h-screen items-center justify-center'
+        )}
+      >
+        {children}
+      </body>
     </html>
   );
 }
