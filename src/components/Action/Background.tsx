@@ -4,9 +4,14 @@ import { motion } from 'framer-motion';
 interface BackgroundProps {
   src: string;
   durationMs?: number;
+  instant?: boolean;
 }
 
-export function Background({ src, durationMs = 500 }: BackgroundProps) {
+export function Background({
+  src,
+  durationMs = 500,
+  instant = false
+}: BackgroundProps) {
   return (
     <Action
       name='Background'
@@ -21,7 +26,7 @@ export function Background({ src, durationMs = 500 }: BackgroundProps) {
             initial: { opacity: 0 },
             entrance: {
               opacity: 1,
-              transition: { duration: 1 }
+              transition: { duration: instant ? 0.1 : 1 }
             },
             exit: {
               opacity: 0,

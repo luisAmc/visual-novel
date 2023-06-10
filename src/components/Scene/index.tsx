@@ -3,7 +3,6 @@ import {
   ReactNode,
   cloneElement,
   isValidElement,
-  useEffect,
   useMemo
 } from 'react';
 import flattenChildren from 'react-keyed-flatten-children';

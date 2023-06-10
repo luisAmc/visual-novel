@@ -1,7 +1,7 @@
 import { Action } from '.';
 import { motion } from 'framer-motion';
 import { useGame } from '../Game/GameContext';
-import { SceneId } from '../Game';
+import { SceneId } from '../Game/GameState';
 
 interface DecisionProps {
   options: Array<{ label: string; to?: SceneId }>;

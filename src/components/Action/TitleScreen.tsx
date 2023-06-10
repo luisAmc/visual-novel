@@ -1,7 +1,12 @@
+import { ReactNode } from 'react';
 import { Action } from '.';
 import { motion } from 'framer-motion';
 
-export function TitleScreen() {
+interface TitleScreenProps {
+  children: ReactNode;
+}
+
+export function TitleScreen({ children }: TitleScreenProps) {
   return (
     <Action name='TitleScreen'>
       {(controls) => (
@@ -26,15 +31,7 @@ export function TitleScreen() {
           <div className='absolute h-full w-full flex items-center justify-center'>
             <div className='absolute inset-0 bg-gray-900/90'></div>
             <div className='absolute flex flex-col items-center'>
-              <h1 className='text-8xl text-gray-50 uppercase'>
-                Tengo que orinar...
-              </h1>
-
-              <div className='text-4xl'>
-                — Esta experiencia usa sonidos, por favor suba el volumen —
-              </div>
-
-              <div className='mt-20 text-5xl'>Precione en cualquier lugar para continuar...</div>
+              {children}
             </div>
           </div>
         </motion.div>

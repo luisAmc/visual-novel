@@ -1,8 +1,8 @@
 import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
-import { SceneId } from '../Game';
 import { Statement } from '../Statement/StatementContext';
 import { useGame } from '../Game/GameContext';
 import { useMeasure } from '@react-hookz/web';
+import { SceneId } from '../Game/GameState';
 import useEventCallback from 'use-event-callback';
 
 interface SceneContextType {
