@@ -67,7 +67,7 @@ export function BathroomVisitStory() {
 
         <Background src={BACKGROUND_BATHROOM_DOOR.src} />
 
-        <Text src={IMAGE_SWITCH.src}>*click*</Text>
+        <Text>*enciende la luz del baño*</Text>
 
         <Background src={BACKGROUND_BATHROOM.src} />
 
@@ -125,7 +125,7 @@ export function BathroomVisitStory() {
             { label: 'Nop, nop', to: Scenes.GOOD_ENDING }
           ]}
         >
-          ...
+          ¿Muevo la cortina para investigar?
         </Decision>
 
         <Sound audioControls={screamV1Control[0]} />
