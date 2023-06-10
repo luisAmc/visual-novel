@@ -197,7 +197,8 @@ export function KnockOnTheDoorStory() {
         </Text>
 
         <Sound audioControls={screamControl[0]} />
-        <Background instant src={BACKGROUND_PERSON.src} />
+        <Background instant src={BACKGROUND_PERSON.src} durationMs={800} />
+        <Background instant src={BACKGROUND_PERSON.src} durationMs={800} />
 
         <ScreenText>
           <div className='uppercase text-center'>Final Malo</div>
