@@ -160,9 +160,15 @@ export function KnockOnTheDoorStory() {
         <Background src={BACKGROUND_CELLPHONE.src} />
         <Text>¿Otra vez? Que pesado...</Text>
 
+        <Decision options={[{ label: 'Contesto' }]}>...</Decision>
+
+        <Text>¿Aló? ¿Quien habla?</Text>
+        <Text>...</Text>
+        <Text>...</Text>
+
         <Sound audioControls={knockFiveControls[0]} />
         <Background src={BACKGROUND_DOOR_LIVING_ROOM.src} />
-        <Text>...</Text>
+        <Text>Dios mío...</Text>
 
         <Background src={BACKGROUND_PEEPHOLE.src} />
         <Text>¿Que rayos esta pasando?</Text>
@@ -178,7 +184,16 @@ export function KnockOnTheDoorStory() {
 
         <Background src={BACKGROUND_DOOR_VIEW.src} />
 
+        <Background src={BACKGROUND_LIVING_ROOM.src} />
+
+        <Sound audioControls={vibrationControls[0]} />
+        <Background src={BACKGROUND_CELLPHONE.src} />
+
+        <Sound audioControls={knockFiveControls[0]} />
+        <Background src={BACKGROUND_DOOR_LIVING_ROOM.src} />
+
         <Sound audioControls={knockTwoControls[0]} />
+        <Background src={BACKGROUND_DOOR_KNOCK.src} />
         <Text>¡HEY!</Text>
 
         <Background src={BACKGROUND_PEEPHOLE.src} />
@@ -188,7 +203,7 @@ export function KnockOnTheDoorStory() {
         <Background src={BACKGROUND_DOOR_VIEW.src} />
         <Text>...</Text>
         <Text>...</Text>
-        <Text>Creo que ya se fueron...</Text>
+        <Text>Creo que ya se fuerón...</Text>
 
         <Text>...</Text>
         <Text>
