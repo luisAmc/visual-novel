@@ -8,7 +8,6 @@ import {
 } from '../Statement/StatementContext';
 import { ReactNode, useEffect, useRef } from 'react';
 import { BaseAction, BaseActionInstance, BaseActionProps } from './BaseAction';
-import { useMountEffect, useUnmountEffect } from '@react-hookz/web';
 
 export interface ActionProps
   extends Partial<Pick<Statement, 'step' | 'until'>>,
@@ -31,7 +30,6 @@ export function Action({
   const { register, visible } = useStatement();
 
   const viewRef = useRef<BaseActionInstance>(null);
-  const mountedRef = useRef(false);
 
   useEffect(() => {
     register({
@@ -42,22 +40,6 @@ export function Action({
       enter: () => viewRef.current?.enter() ?? false
     });
   }, [actionName, until, step, register]);
-
-  useMountEffect(() => {
-    if (mountedRef.current) {
-      return;
-    }
-
-    mountedRef.current = true;
-  });
-
-  useUnmountEffect(() => {
-    if (!mountedRef.current) {
-      return;
-    }
-
-    mountedRef.current = false;
-  });
 
   return (
     <AnimatePresence>
