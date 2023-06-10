@@ -117,9 +117,9 @@ export function KnockOnTheDoorStory() {
         <Background src={BACKGROUND_LIVING_ROOM.src} />
         <Text>A saber quien era.</Text>
         <Text>¿Sera que pido comida?</Text>
+        <Text>Pucha que ganas tengo de probar las Boquitas LOL.</Text>
         <Text>
-          Pucha que ganas tengo de probar las Boquitas LOL. Dicen que están
-          buenas pero no las encuentro en ninguna tienda.
+          Dicen que están buenas pero no las encuentro en ninguna tienda.
         </Text>
 
         <Text>...</Text>
@@ -164,7 +164,7 @@ export function KnockOnTheDoorStory() {
 
         <Text>¿Aló? ¿Quien habla?</Text>
         <Text>...</Text>
-        <Text>...</Text>
+        <Text>*silencio*</Text>
 
         <Sound audioControls={knockFiveControls[0]} />
         <Background src={BACKGROUND_DOOR_LIVING_ROOM.src} />
@@ -206,10 +206,7 @@ export function KnockOnTheDoorStory() {
         <Text>Creo que ya se fuerón...</Text>
 
         <Text>...</Text>
-        <Text>
-          Me asomare para ver si no es que solo estan esperando a que me
-          mueva...
-        </Text>
+        <Text>¿Será que están esperando que me mueva? Tengo que revisar.</Text>
 
         <Sound audioControls={screamControl[0]} />
         <Background instant src={BACKGROUND_PERSON.src} durationMs={800} />
@@ -226,7 +223,7 @@ export function KnockOnTheDoorStory() {
       <Scene key={Scenes.GOOD_ENDING}>
         <Background src={BACKGROUND_CELLPHONE.src} />
         <Text speaker='Orlando'>En unos 20 minutos llegaré.</Text>
-        <Text speaker='Orlando'>Esta bien, aquí estaré.</Text>
+        <Text>Esta bien, aquí estaré. Nos vemos.</Text>
 
         <Background src={BACKGROUND_LIVING_ROOM.src} />
         <Text>Toca esperar...</Text>
@@ -240,9 +237,7 @@ export function KnockOnTheDoorStory() {
         <Text>Mmm... si que estan buenas</Text>
 
         <ScreenText>
-          <div className='text-center'>
-            Comí las mejores boquitas con mi amigo.
-          </div>
+          <div className='text-center'>Por fin probe las Boquitas LOL.</div>
         </ScreenText>
 
         <ScreenText>
