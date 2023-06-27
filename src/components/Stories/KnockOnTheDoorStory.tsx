@@ -1,14 +1,14 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { Scene } from '@/components/Scene';
-import { TitleScreen } from '@/components/Action/TitleScreen';
-import { Background } from '@/components/Action/Background';
-import { Text } from '@/components/Action/Text';
-import { Decision } from '@/components/Action/Decision';
-import { Sound } from '@/components/Action/Sound';
-import { ScreenText } from '@/components/Action/ScreenText';
-import { GameProvider } from '@/components/Game/GameContext';
+import { Scene } from '~/components/Scene';
+import { TitleScreen } from '~/components/Action/TitleScreen';
+import { Background } from '~/components/Action/Background';
+import { Text } from '~/components/Action/Text';
+import { Decision } from '~/components/Action/Decision';
+import { Sound } from '~/components/Action/Sound';
+import { ScreenText } from '~/components/Action/ScreenText';
+import { GameProvider } from '~/components/Game/GameContext';
 import useSound from 'use-sound';
 
 import BACKGROUND_LIVING_ROOM from '/public/assets/knock-on-the-door/images/living-room.webp';
