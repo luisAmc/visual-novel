@@ -11,7 +11,7 @@ import { BaseAction, BaseActionInstance, BaseActionProps } from './BaseAction';
 
 export interface ActionProps
   extends Partial<Pick<Statement, 'step' | 'until'>>,
-    Pick<BaseActionProps, 'audioControls'> {
+    Pick<BaseActionProps, 'audioControls' | 'soundPlayer'> {
   name: string;
   zIndex?: number | 'auto';
   statementType?: StatementType;
@@ -25,6 +25,7 @@ export function Action({
   zIndex = 'auto',
   statementType = { variation: 'skippable_static' },
   audioControls,
+  soundPlayer,
   children
 }: ActionProps) {
   const { register, visible } = useStatement();
@@ -49,6 +50,7 @@ export function Action({
           zIndex={zIndex}
           statementType={statementType}
           audioControls={audioControls}
+          soundPlayer={soundPlayer}
         >
           {children}
         </BaseAction>

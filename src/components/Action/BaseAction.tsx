@@ -33,21 +33,33 @@ export interface BaseActionInstance {
   resume: () => void;
 }
 
+export interface SoundPlayerType {
+  play: () => void;
+  stop: () => void;
+}
+
 export interface BaseActionProps {
   zIndex: number | 'auto';
   statementType: StatementType;
   audioControls?: ReturnType<typeof useSound>[0];
+  soundPlayer?: SoundPlayerType;
   children: (control: AnimationControls) => ReactNode;
 }
 
 export const BaseAction = forwardRef(function BaseAction(
-  { statementType, zIndex, audioControls, children }: BaseActionProps,
+  {
+    statementType,
+    zIndex,
+    audioControls,
+    soundPlayer,
+    children
+  }: BaseActionProps,
   ref
 ) {
   const controls = useAnimation();
 
   const { goToNextStatement } = useScene();
-  const { statementIndex, focused } = useStatement();
+  const { statementIndex, focused, visible } = useStatement();
 
   const [isPresent, safeToRemove] = usePresence();
   const isMounted = useIsMounted();
@@ -90,6 +102,7 @@ export const BaseAction = forwardRef(function BaseAction(
       );
 
       audioControls?.();
+      soundPlayer?.play();
     } else {
       controls.start('exit').then(() => safeToRemove());
     }
@@ -123,6 +136,12 @@ export const BaseAction = forwardRef(function BaseAction(
       }
     }
   }, [countdownProgress]);
+
+  useEffect(() => {
+    if (!visible && soundPlayer) {
+      soundPlayer.stop();
+    }
+  }, [visible]);
 
   return (
     <div
