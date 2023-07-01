@@ -159,7 +159,7 @@ export const BaseAction = forwardRef(function BaseAction(
             value={countdownProgress}
             max={100}
             className={clsx(
-              'absolute left-0 top-0 z-[100] h-1 w-full appearance-none rounded-none',
+              'absolute left-0 bottom-0 z-[100] h-0.5 w-full appearance-none rounded-none',
               '[&::-moz-progress-bar]:bg-emerald-500',
               '[&::-webkit-progress-bar]:rounded-none [&::-webkit-progress-bar]:bg-emerald-500/20',
               '[&::-webkit-progress-value]:rounded-none [&::-webkit-progress-value]:bg-emerald-500'

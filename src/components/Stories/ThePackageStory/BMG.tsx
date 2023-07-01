@@ -19,3 +19,14 @@ export function BGM({ player }: BGMProps) {
     </Action>
   );
 }
+
+export function StopBGM() {
+  return (
+    <Action
+      name='StopBGM'
+      statementType={{ variation: 'skippable_timed', durationMs: 0 }}
+    >
+      {() => null}
+    </Action>
+  );
+}
