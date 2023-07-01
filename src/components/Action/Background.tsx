@@ -16,7 +16,10 @@ export function Background({
     <Action
       name='Background'
       statementType={{ variation: 'skippable_timed', durationMs }}
-      until={(statement) => statement.actionName === 'Background'}
+      until={(statement) =>
+        statement.actionName === 'Background' ||
+        statement.actionName === 'BlackScreen'
+      }
     >
       {(controls) => (
         <motion.div

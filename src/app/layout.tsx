@@ -1,25 +1,13 @@
 // import './globals.css';
-// import { Inter } from 'next/font/google';
+import { Roboto_Mono } from 'next/font/google';
 
-// const inter = Inter({ subsets: ['latin'] });
-
-// export default function RootLayout({
-//   children
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   return (
-//     <html lang='en'>
-//       <body className={inter.className}>{children}</body>
-//     </html>
-//   );
-// }
+export const ROBOTO_MONO = Roboto_Mono({ subsets: ['latin'], display: 'swap' });
 
 import clsx from 'clsx';
 import './globals.css';
 import localFont from 'next/font/local';
 
-const chillerFont = localFont({
+export const CHILLER_FONT = localFont({
   src: './chiller.ttf',
   display: 'swap'
 });
@@ -33,7 +21,7 @@ export default function RootLayout({
     <html lang='en'>
       <body
         className={clsx(
-          chillerFont.className,
+          CHILLER_FONT.className,
           'flex min-h-screen items-center justify-center'
         )}
       >

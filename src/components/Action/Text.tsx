@@ -39,7 +39,7 @@ export function Text({ children, speaker, src }: TextProps) {
           )}
 
           <div className='absolute inset-x-12 bottom-12 h-52 rounded-md bg-slate-800/80'>
-            <div className='px-12 py-8 text-5xl'>{children}</div>
+            <div className='px-12 py-8 text-5xl leading-snug'>{children}</div>
             <div className='absolute text-xl animate-pulse right-12 bottom-12'>
               ▶
             </div>

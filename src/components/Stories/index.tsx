@@ -5,11 +5,12 @@ import Link from 'next/link';
 export function Stories() {
   const stories = [
     { title: 'Visita en el baño', href: '/bathroom-visit' },
-    { title: 'Alguien toca la puerta', href: '/knock-on-the-door' }
+    { title: 'Alguien toca la puerta', href: '/knock-on-the-door' },
+    { title: 'El Paquete', href: '/the-package' },
   ];
 
   return (
-    <div className='grid  gap-8 grid-cols-1 md:grid-cols-2'>
+    <div className='grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3'>
       {stories.map(({ title, href }, index) => (
         <StoryCard key={href} index={index + 1} title={title} href={href} />
       ))}
