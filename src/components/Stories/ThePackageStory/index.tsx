@@ -570,7 +570,7 @@ export function ThePackageStory() {
         </ScreenText>
 
         <Text>???</Text>
-        <Text>¿"No la hagas enojar"?</Text>
+        <Text>¿&quot;No la hagas enojar&quot;?</Text>
         <Text>Si que anda bolo este man...</Text>
 
         <BGM player={BGMS.JAZZ} />
@@ -578,7 +578,7 @@ export function ThePackageStory() {
         <Background src={BG_DOOR_CLOSE.src} />
 
         <Text>...</Text>
-        <Text>...¿"no la hagas enojar"?...</Text>
+        <Text>...¿&quot;no la hagas enojar&quot;?...</Text>
         <Text>...</Text>
 
         <Background src={BG_CLOSE_LIVING_ROOM_DOLL_2.src} />
