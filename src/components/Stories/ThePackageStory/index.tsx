@@ -375,8 +375,8 @@ export function ThePackageStory() {
         <Background src={BG_OPENED_BOX.src} />
 
         <Text>!!!</Text>
-        <Text>¿Que rayos...?</Text>
-        <Text>¿Que ondas con este man?</Text>
+        <Text>¿Qué rayos...?</Text>
+        <Text>¿Qué ondas con este man?</Text>
         <Text>¿Por qué me habrá mandado esto?</Text>
         <Text>Después de decir que era algo que me iba a gustar...</Text>
         <Text>Nah, quiero explicaciones...</Text>
@@ -386,7 +386,7 @@ export function ThePackageStory() {
 
         <Background src={BG_OPENED_BOX.src} durationMs={3000} />
 
-        <Text speaker='Carlos'>¡Hey! ¿Que tál?</Text>
+        <Text speaker='Carlos'>¡Hey! ¿Qué tal?</Text>
 
         <Text>Ehh... tranquilo... bueno hasta hace unos momentos...</Text>
 
@@ -395,7 +395,7 @@ export function ThePackageStory() {
         <Text>Pues me entregarón el paquete, pe—</Text>
 
         <Text speaker='Carlos'>
-          ¿Ah, ya te llegó? ¿Y qué ondas? ¿Qué pesas?
+          ¿Ah, ya te llegó? ¿Y qué ondas? ¿Qué pensas?
         </Text>
 
         <Text speaker='Carlos'>¿Otro rollo, no?</Text>
