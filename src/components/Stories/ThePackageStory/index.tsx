@@ -552,8 +552,8 @@ export function ThePackageStory() {
 
         <Background src={BG_DOOR_OPEN_NOTE.src} />
 
-        <Text>¿Que rayos?</Text>
-        <Text>¿Que se hizo?</Text>
+        <Text>¿Qué rayos?</Text>
+        <Text>¿Qué se hizo?</Text>
         <Text>...</Text>
         <Text>¿Una nota?</Text>
 
@@ -637,7 +637,7 @@ export function ThePackageStory() {
         <CreepyText speaker='???'>¿Por qué?</CreepyText>
 
         <Text>?!?!?</Text>
-        <Text>¿Que fue eso?</Text>
+        <Text>¿Qué fue eso?</Text>
 
         <Background src={BG_PEEPHOLE.src} />
         <Text>¿Quién dijo eso?</Text>
