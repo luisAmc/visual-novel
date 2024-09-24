@@ -793,6 +793,10 @@ export function ThePackageStory() {
         <Sound audioControls={SOUNDS.LAUGH_2} />
         <BlackScreen />
 
+        <CreepyText speaker='???'>
+          ... encuéntrame, encuéntrame...
+        </CreepyText>
+
         <Background src={BG_LIVING_ROOM_DOLL_1.src} />
 
         <Text>¿A- adonde está?</Text>
