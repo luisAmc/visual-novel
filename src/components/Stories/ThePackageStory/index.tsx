@@ -149,7 +149,7 @@ export function ThePackageStory() {
             <p className='text-2xl text-justify'>
               Cuando el cursor se convierta en un{' '}
               <span className='font-bold'>ojo</span> (👁️) tendrás que dar click
-              en algún lugar especifico de la pantalla para continuar.
+              en algún lugar específico de la pantalla para continuar.
             </p>
 
             <div className='mt-20 text-2xl'>
@@ -157,7 +157,7 @@ export function ThePackageStory() {
             </div>
 
             <div className='mt-20 text-2xl'>
-              Preciona click para avanzar a la prueba...
+              Presiona click para avanzar a la prueba...
             </div>
           </div>
         </ScreenText>
@@ -232,9 +232,9 @@ export function ThePackageStory() {
         <Text>...</Text>
         <Text>Como que voló el repartido.</Text>
         <Text>Ni la sombra le ví.</Text>
-        <Text>No se espero ni a que le diera las gracias...</Text>
+        <Text>No se esperó ni a que le diera las gracias...</Text>
         <Text>Ni se aseguró que fuera el lugar correcto de entrega...</Text>
-        <Text>Que barbaro</Text>
+        <Text>Que bárbaro.</Text>
 
         <Background src={BG_DOOR_OPEN_BOX_ZOOMED.src} />
 
@@ -265,7 +265,7 @@ export function ThePackageStory() {
         <Background src={BG_DOOR_OPEN_BOX.src} />
         <Text>Nah, de seguro no es para mí.</Text>
         <Text>
-          No creo que aquel mandará lo que mandara en una caja tan fea.
+          No creo que aquel mandara lo que mandara en una caja tan fea.
         </Text>
 
         <Sound audioControls={SOUNDS.UNLOCKING_DOOR} />
@@ -273,7 +273,7 @@ export function ThePackageStory() {
 
         <Sound audioControls={SOUNDS.WAILING} />
         <Text>!!!</Text>
-        <Text>Uy... ¿que es eso?</Text>
+        <Text>Uy... ¿qué es eso?</Text>
 
         <Background src={BG_PEEPHOLE_SHADOW.src} />
         <Text>¿El repartidor otra vez?</Text>
@@ -335,7 +335,7 @@ export function ThePackageStory() {
         <BGM player={BGMS.HAPPY_MOMENTS} />
         <Background src={BG_SNACKS.src} />
 
-        <Text>¡Son un monton de golosinas!</Text>
+        <Text>¡Son un montón de golosinas!</Text>
         <Text>Churritos, galletas, sodas... ¡Viene de todo!</Text>
         <Text>Hasta gomitas en forma de insectos ¡Ahh!</Text>
         <Text>¡Que otro rollo!</Text>
@@ -359,8 +359,8 @@ export function ThePackageStory() {
 
         <Background src={BG_DOOR_OPEN_BOX.src} />
         <Text>Que codo este man.</Text>
-        <Text>Pidio el envío en la caja mas chasta jaja</Text>
-        <Text>Aunque fijo fue en el envió que se estropeó.</Text>
+        <Text>Pidió el envío en la caja mas chasta jaja</Text>
+        <Text>Aunque fijo fue en él envió que se estropeó.</Text>
         <Text>Que se le va a hacer...</Text>
 
         <Sound audioControls={SOUNDS.UNLOCKING_DOOR} />
@@ -377,8 +377,8 @@ export function ThePackageStory() {
         <Text>!!!</Text>
         <Text>¿Que rayos...?</Text>
         <Text>¿Que ondas con este man?</Text>
-        <Text>¿Por qué me habra mandado esto?</Text>
-        <Text>Despues de decir que era algo que me iba a gustar...</Text>
+        <Text>¿Por qué me habrá mandado esto?</Text>
+        <Text>Después de decir que era algo que me iba a gustar...</Text>
         <Text>Nah, quiero explicaciones...</Text>
         <Text>Ahorita lo llamo...</Text>
 
@@ -395,22 +395,22 @@ export function ThePackageStory() {
         <Text>Pues me entregarón el paquete, pe—</Text>
 
         <Text speaker='Carlos'>
-          ¿Ah, ya te llegó? ¿Y qué ondas? ¿Que pesas?
+          ¿Ah, ya te llegó? ¿Y qué ondas? ¿Qué pesas?
         </Text>
 
         <Text speaker='Carlos'>¿Otro rollo, no?</Text>
 
         <Text>No... no diria que es otro rollo man.</Text>
 
-        <Text>Osea, te agradezco que me hayas mandado algo, pero...</Text>
+        <Text>Ósea, te agradezco que me hayas mandado algo, pero...</Text>
 
         <Text>¿Por qué me mandaste esto?</Text>
 
-        <Text speaker='Carlos'>Ah... p- pense que te iba a gustar</Text>
+        <Text speaker='Carlos'>Ah... p- pensé que te iba a gustar</Text>
 
         <Text speaker='Carlos'>No creí que esta seria tu reacción...</Text>
 
-        <Text>Bueno, no se que reacción esperabas que tuviera.</Text>
+        <Text>Bueno, no sé qué reacción esperabas que tuviera.</Text>
 
         <Text>¿Cómo pensabas que esto me iba a gustar?</Text>
 
@@ -423,20 +423,20 @@ export function ThePackageStory() {
         </Text>
 
         <Text>¿Ah?</Text>
-        <Text>Esperame... ¿qué?</Text>
+        <Text>Espérame... ¿qué?</Text>
         <Text>¿Churros y galletas?</Text>
         <Text>¿Eso fue lo que enviaste?</Text>
 
         <Text speaker='Carlos'>Pues si, probalas aunque sea...</Text>
 
         <Text speaker='Carlos'>
-          Talvez solo es que se miran raras pero puede que sepan bien todavía.
+          Tal vez solo es que se miran raras, pero puede que sepan bien todavía.
         </Text>
 
         <Text>No... es que...</Text>
         <Text>No fue eso lo que estaba en la caja...</Text>
 
-        <Text speaker='Carlos'>¿Mmm? ¿Y que es lo que habia entonces?</Text>
+        <Text speaker='Carlos'>¿Mmm? ¿Y qué es lo que había entonces?</Text>
 
         <Text>Es...</Text>
 
@@ -452,7 +452,7 @@ export function ThePackageStory() {
         <Text speaker='Carlos'>Ah pues, eso no fue lo que envié.</Text>
 
         <Text speaker='Carlos'>
-          ¿No será que la pedistes vos y no te acordas?
+          ¿No será que la pediste vos y no te acordas?
         </Text>
 
         <Text>Nambe, que voy a andar pidiendo esta cosa.</Text>
@@ -470,7 +470,7 @@ export function ThePackageStory() {
 
         <Text>...</Text>
         <Text>Tiene sentido fijate.</Text>
-        <Text>Fijo viene alguien despues a preguntar por el paquete.</Text>
+        <Text>Fijo viene alguien después a preguntar por el paquete.</Text>
 
         <Text speaker='Carlos'>Mhmm</Text>
 
@@ -483,12 +483,12 @@ export function ThePackageStory() {
 
         <Text>Pucha, si hombe.</Text>
         <Text>
-          Pero ahora, cuando hagán la entrega, estaré seguro que si es el tuyo
+          Pero ahora, cuando hagán la entrega, estaré seguro de que si es el tuyo
           jaja.
         </Text>
 
         <Text speaker='Carlos'>Eso sí jaja.</Text>
-        <Text speaker='Carlos'>Dale pues, ahí hablamos despues.</Text>
+        <Text speaker='Carlos'>Dale pues, ahí hablamos después.</Text>
 
         <Text>Dale, nos vemos.</Text>
 
@@ -502,9 +502,9 @@ export function ThePackageStory() {
 
         <Text>...</Text>
         <Text>...</Text>
-        <Text>Ya viendola bien, entiendo porque alguien quisiera una...</Text>
+        <Text>Ya viéndola bien, entiendo porque alguien quisiera una...</Text>
         <Text>Pero ese alguien no soy yo.</Text>
-        <Text>A ver cuanto se tardan por venir por ella...</Text>
+        <Text>A ver cuánto se tardan por venir por ella...</Text>
 
         <Background src={BG_CLOSE_LIVING_ROOM_DOLL_1.src} durationMs={1500} />
 
@@ -523,7 +523,7 @@ export function ThePackageStory() {
         <Text>...</Text>
         <Text>¿No estás embrujada, no?</Text>
         <Text>...</Text>
-        <Text>... ¿que estoy haciendo hablandole a una muñeca?...</Text>
+        <Text>... ¿que estoy haciendo hablándole a una muñeca?...</Text>
         <Text>Je...</Text>
         <Text>...</Text>
         <Text>...</Text>
@@ -628,7 +628,7 @@ export function ThePackageStory() {
           Aquí si vuelve el repartidor o si pasa tu dueño te puede llevar.
         </Text>
         <Text>La verdad es que no te quiero en mi casa jaja.</Text>
-        <Text>Adios, papada vieja.</Text>
+        <Text>Adiós, papada vieja.</Text>
 
         <Sound audioControls={SOUNDS.UNLOCKING_DOOR} />
         <Background src={BG_DOOR_CLOSE.src} />
@@ -734,7 +734,7 @@ export function ThePackageStory() {
         <BGM player={BGMS.JAZZ} />
 
         <Background src={BG_CLOSE_LIVING_ROOM_DOLL_2.src} />
-        <Text>A saber cuanto costará una de estas cosas.</Text>
+        <Text>A saber cuánto costará una de estas cosas.</Text>
         <Text>Mejor espero que alguien venga por ella.</Text>
 
         <Sound audioControls={SOUNDS.KNOCK} />
@@ -752,7 +752,7 @@ export function ThePackageStory() {
         <Background src={BG_DOOR_OPEN_NOTE.src} />
 
         <Text>...</Text>
-        <Text>Ya se esta pasando este man...</Text>
+        <Text>Ya se está pasando este man...</Text>
         <Text>(...¿otra nota?...)</Text>
 
         <Sound audioControls={SOUNDS.PAPER_FLUTTER} />
@@ -788,7 +788,7 @@ export function ThePackageStory() {
         <Text>!!!</Text>
         <Text>¿Q- qué?</Text>
         <Text>¿Qué se hizo?</Text>
-        <Text>La muñeca... ¿donde está?</Text>
+        <Text>La muñeca... ¿dónde está?</Text>
 
         <Sound audioControls={SOUNDS.LAUGH_2} />
         <BlackScreen />
@@ -859,7 +859,7 @@ export function ThePackageStory() {
         <Text>Como no fui hoy por esperar el paquete de aquel...</Text>
         <Text>No use la mudada de ropa que normalmente llevo...</Text>
         <Text>
-          Voy a ver quien me acompaña mañana para sacar y quemar esa cosa...
+          Voy a ver quién me acompaña mañana para sacar y quemar esa cosa...
         </Text>
         <Text>Hm... hm... hm...</Text>
 
@@ -868,7 +868,7 @@ export function ThePackageStory() {
         <Text>?!?!?!?</Text>
 
         <Text>¿A...?</Text>
-        <Text>¿A... a donde está?</Text>
+        <Text>¿A... a dónde está?</Text>
 
         <Sound audioControls={SOUNDS.LAUGH_2} />
         <Background src={BG_BAG.src} />
@@ -949,13 +949,13 @@ export function ThePackageStory() {
 
         <CreepyText speaker='El Repartidor'>...</CreepyText>
         <CreepyText speaker='El Repartidor'>
-          ...¿acaso no te pedi que la cuidaras?...
+          ...¿acaso no te pedí que la cuidaras?...
         </CreepyText>
         <CreepyText speaker='El Repartidor'>
-          ...si no queres estar con ella...
+          ...si no quieres estar con ella...
         </CreepyText>
         <CreepyText speaker='El Repartidor'>
-          ...no deberias de estar entonces...
+          ...no deberías de estar entonces...
         </CreepyText>
 
         <Sound audioControls={SOUNDS.DISLOCATION} />
@@ -1004,7 +1004,7 @@ export function ThePackageStory() {
               Deje mi maleta ahí, pero no importa...
             </div>
             <div className='text-center text-3xl'>
-              Unas semanas despues pude mudarme de departamento.
+              Unas semanas después pude mudarme de departamento.
             </div>
             <div className='text-center'>...Odio a las muñecas ahora...</div>
           </div>
@@ -1017,6 +1017,7 @@ export function ThePackageStory() {
       </Scene>
     ]
   ]);
+
 
   return (
     <div
