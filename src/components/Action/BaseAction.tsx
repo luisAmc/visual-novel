@@ -72,7 +72,7 @@ export const BaseAction = forwardRef(function BaseAction(
   }, []);
 
   const [countdownProgress, setCountdownProgress] = useState(0);
-  const countdownTimerRef = useRef<ReturnType<typeof setInterval>>();
+  const countdownTimerRef = useRef<ReturnType<typeof setInterval>>(undefined);
 
   useImperativeHandle(
     ref,

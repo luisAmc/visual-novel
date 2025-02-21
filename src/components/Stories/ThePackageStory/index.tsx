@@ -1,127 +1,127 @@
-import { Background } from '../../Action/Background';
-import { BGM, StopBGM } from './BMG';
-import { BlackScreen } from './BlackScreen';
-import { BranchDecision } from './BranchDecision';
-import { CHILLER_FONT, ROBOTO_MONO } from '~/app/layout';
-import { CreepyText } from './CreepyText';
-import { GameProvider } from '../../Game/GameContext';
-import { getTextMessages } from './getTextMessages';
-import { PointClick, Target } from './PointClick';
-import { ReactNode } from 'react';
-import { Scene } from '../../Scene';
-import { ScreenConversation } from './ScreenConversation';
-import { ScreenText } from '~/components/Action/ScreenText';
-import { Sound } from '../../Action/Sound';
-import { Text } from '../../Action/Text';
-import { TitleScreen } from '../../Action/TitleScreen';
-import clsx from 'clsx';
-import useSound from 'use-sound';
+import { Background } from "../../Action/Background";
+import { BGM, StopBGM } from "./BMG";
+import { BlackScreen } from "./BlackScreen";
+import { BranchDecision } from "./BranchDecision";
+import { CreepyText } from "./CreepyText";
+import { GameProvider } from "../../Game/GameContext";
+import { getTextMessages } from "./getTextMessages";
+import { PointClick, Target } from "./PointClick";
+import { ReactNode } from "react";
+import { Scene } from "../../Scene";
+import { ScreenConversation } from "./ScreenConversation";
+import { ScreenText } from "~/components/Action/ScreenText";
+import { Sound } from "../../Action/Sound";
+import { Text } from "../../Action/Text";
+import { TitleScreen } from "../../Action/TitleScreen";
+import { CHILLER_FONT, ROBOTO_MONO } from "~/app/fonts";
+import clsx from "clsx";
+import useSound from "use-sound";
 
-import BG_BAG from '/public/assets/the-package/images/bag.webp';
-import BG_BAG_DOLL_1 from '/public/assets/the-package/images/bag-doll-1.webp';
-import BG_BAG_DOLL_2 from '/public/assets/the-package/images/bag-doll-2.webp';
-import BG_BAG_DOLL_3 from '/public/assets/the-package/images/bag-doll-3.webp';
-import BG_BAG_DOLL_4 from '/public/assets/the-package/images/bag-doll-4.webp';
-import BG_BAG_DOLL_5 from '/public/assets/the-package/images/bag-doll-5.webp';
-import BG_BAG_DOLL_5_ZOOMED from '/public/assets/the-package/images/bag-doll-5-zoomed.webp';
-import BG_CELLPHONE from '/public/assets/the-package/images/cellphone.webp';
-import BG_CLOSE_LIVING_ROOM from '/public/assets/the-package/images/close-living-room.webp';
-import BG_CLOSE_LIVING_ROOM_DOLL_1 from '/public/assets/the-package/images/close-living-room-doll-1.webp';
-import BG_CLOSE_LIVING_ROOM_DOLL_2 from '/public/assets/the-package/images/close-living-room-doll-2.webp';
-import BG_CLOSE_LIVING_ROOM_STAINED from '/public/assets/the-package/images/close-living-room-stained.webp';
-import BG_DOLL from '/public/assets/the-package/images/doll.webp';
-import BG_DOLL_STAR_1 from '/public/assets/the-package/images/doll-star-1.webp';
-import BG_DOLL_STAR_10 from '/public/assets/the-package/images/doll-star-10.webp';
-import BG_DOLL_STAR_2 from '/public/assets/the-package/images/doll-star-2.webp';
-import BG_DOLL_STAR_3 from '/public/assets/the-package/images/doll-star-3.webp';
-import BG_DOLL_STAR_4 from '/public/assets/the-package/images/doll-star-4.webp';
-import BG_DOLL_STAR_5 from '/public/assets/the-package/images/doll-star-5.webp';
-import BG_DOLL_STAR_6 from '/public/assets/the-package/images/doll-star-6.webp';
-import BG_DOLL_STAR_7 from '/public/assets/the-package/images/doll-star-7.webp';
-import BG_DOLL_STAR_8 from '/public/assets/the-package/images/doll-star-8.webp';
-import BG_DOLL_STAR_9 from '/public/assets/the-package/images/doll-star-9.webp';
-import BG_DOOR_CLOSE from '/public/assets/the-package/images/door-close.webp';
-import BG_DOOR_OPEN_BOX from '/public/assets/the-package/images/door-open-box.webp';
-import BG_DOOR_OPEN_BOX_ZOOMED from '/public/assets/the-package/images/door-open-box-zoomed.webp';
-import BG_DOOR_OPEN_DELIVERY_MAN from '/public/assets/the-package/images/door-open-delivery-man.webp';
-import BG_DOOR_OPEN_NOTE from '/public/assets/the-package/images/door-open-note.webp';
-import BG_HALL from '/public/assets/the-package/images/hall.webp';
-import BG_HALL_DOLL from '/public/assets/the-package/images/hall-doll.webp';
-import BG_HALL_DOLL_CLOSE_1 from '/public/assets/the-package/images/hall-doll-close-1.webp';
-import BG_HALL_DOLL_CLOSE_2 from '/public/assets/the-package/images/hall-doll-close-2.webp';
-import BG_HALL_DOLL_CLOSE_3 from '/public/assets/the-package/images/hall-doll-close-3.webp';
-import BG_HALL_DOLL_CLOSE_4 from '/public/assets/the-package/images/hall-doll-close-4.webp';
-import BG_HALL_DOLL_CLOSE_5 from '/public/assets/the-package/images/hall-doll-close-5.webp';
-import BG_HALL_DOLL_CLOSE_5_ZOOMED from '/public/assets/the-package/images/hall-doll-close-5-zoomed.webp';
-import BG_HALL_DOLL_CLOSE_6_ZOOMED from '/public/assets/the-package/images/hall-doll-close-6-zoomed.webp';
-import BG_LIVING_ROOM_CLEAN from '/public/assets/the-package/images/living-room-clean.webp';
-import BG_LIVING_ROOM_DOLL_1 from '/public/assets/the-package/images/living-room-doll-1.webp';
-import BG_LIVING_ROOM_DOLL_2 from '/public/assets/the-package/images/living-room-doll-2.webp';
-import BG_LIVING_ROOM_DOLL_3 from '/public/assets/the-package/images/living-room-doll-3.webp';
-import BG_LIVING_ROOM_DOLL_4 from '/public/assets/the-package/images/living-room-doll-4.webp';
-import BG_LIVING_ROOM_STAINED from '/public/assets/the-package/images/living-room-stained.webp';
-import BG_OPENED_BOX from '/public/assets/the-package/images/opened-box.webp';
-import BG_PARK from '/public/assets/the-package/images/park.webp';
-import BG_PARK_GHOST_1 from '/public/assets/the-package/images/park-ghost-1.webp';
-import BG_PARK_GHOST_2 from '/public/assets/the-package/images/park-ghost-2.webp';
-import BG_PARK_GHOST_3 from '/public/assets/the-package/images/park-ghost-3.webp';
-import BG_PARK_GHOST_4 from '/public/assets/the-package/images/park-ghost-4.webp';
-import BG_PARK_GHOST_5 from '/public/assets/the-package/images/park-ghost-5.webp';
-import BG_PARK_GHOST_6 from '/public/assets/the-package/images/park-ghost-6.webp';
-import BG_PEEPHOLE from '/public/assets/the-package/images/peephole.webp';
-import BG_PEEPHOLE_DELIVERY_MAN from '/public/assets/the-package/images/peephole-delivery-man.webp';
-import BG_PEEPHOLE_SHADOW from '/public/assets/the-package/images/peephole-shadow.webp';
-import BG_PEEPHOLE_SHADOW_BOX from '/public/assets/the-package/images/peephole-shadow-box.webp';
-import BG_POINT_AND_CLICK_TUTORIAL from '/public/assets/the-package/images/point-and-click-tutorial.webp';
-import BG_SNACKS from '/public/assets/the-package/images/snacks.webp';
+import BG_BAG from "/public/assets/the-package/images/bag.webp";
+import BG_BAG_DOLL_1 from "/public/assets/the-package/images/bag-doll-1.webp";
+import BG_BAG_DOLL_2 from "/public/assets/the-package/images/bag-doll-2.webp";
+import BG_BAG_DOLL_3 from "/public/assets/the-package/images/bag-doll-3.webp";
+import BG_BAG_DOLL_4 from "/public/assets/the-package/images/bag-doll-4.webp";
+import BG_BAG_DOLL_5 from "/public/assets/the-package/images/bag-doll-5.webp";
+import BG_BAG_DOLL_5_ZOOMED from "/public/assets/the-package/images/bag-doll-5-zoomed.webp";
+import BG_CELLPHONE from "/public/assets/the-package/images/cellphone.webp";
+import BG_CLOSE_LIVING_ROOM from "/public/assets/the-package/images/close-living-room.webp";
+import BG_CLOSE_LIVING_ROOM_DOLL_1 from "/public/assets/the-package/images/close-living-room-doll-1.webp";
+import BG_CLOSE_LIVING_ROOM_DOLL_2 from "/public/assets/the-package/images/close-living-room-doll-2.webp";
+import BG_CLOSE_LIVING_ROOM_STAINED from "/public/assets/the-package/images/close-living-room-stained.webp";
+import BG_DOLL from "/public/assets/the-package/images/doll.webp";
+import BG_DOLL_STAR_1 from "/public/assets/the-package/images/doll-star-1.webp";
+import BG_DOLL_STAR_10 from "/public/assets/the-package/images/doll-star-10.webp";
+import BG_DOLL_STAR_2 from "/public/assets/the-package/images/doll-star-2.webp";
+import BG_DOLL_STAR_3 from "/public/assets/the-package/images/doll-star-3.webp";
+import BG_DOLL_STAR_4 from "/public/assets/the-package/images/doll-star-4.webp";
+import BG_DOLL_STAR_5 from "/public/assets/the-package/images/doll-star-5.webp";
+import BG_DOLL_STAR_6 from "/public/assets/the-package/images/doll-star-6.webp";
+import BG_DOLL_STAR_7 from "/public/assets/the-package/images/doll-star-7.webp";
+import BG_DOLL_STAR_8 from "/public/assets/the-package/images/doll-star-8.webp";
+import BG_DOLL_STAR_9 from "/public/assets/the-package/images/doll-star-9.webp";
+import BG_DOOR_CLOSE from "/public/assets/the-package/images/door-close.webp";
+import BG_DOOR_OPEN_BOX from "/public/assets/the-package/images/door-open-box.webp";
+import BG_DOOR_OPEN_BOX_ZOOMED from "/public/assets/the-package/images/door-open-box-zoomed.webp";
+import BG_DOOR_OPEN_DELIVERY_MAN from "/public/assets/the-package/images/door-open-delivery-man.webp";
+import BG_DOOR_OPEN_NOTE from "/public/assets/the-package/images/door-open-note.webp";
+import BG_HALL from "/public/assets/the-package/images/hall.webp";
+import BG_HALL_DOLL from "/public/assets/the-package/images/hall-doll.webp";
+import BG_HALL_DOLL_CLOSE_1 from "/public/assets/the-package/images/hall-doll-close-1.webp";
+import BG_HALL_DOLL_CLOSE_2 from "/public/assets/the-package/images/hall-doll-close-2.webp";
+import BG_HALL_DOLL_CLOSE_3 from "/public/assets/the-package/images/hall-doll-close-3.webp";
+import BG_HALL_DOLL_CLOSE_4 from "/public/assets/the-package/images/hall-doll-close-4.webp";
+import BG_HALL_DOLL_CLOSE_5 from "/public/assets/the-package/images/hall-doll-close-5.webp";
+import BG_HALL_DOLL_CLOSE_5_ZOOMED from "/public/assets/the-package/images/hall-doll-close-5-zoomed.webp";
+import BG_HALL_DOLL_CLOSE_6_ZOOMED from "/public/assets/the-package/images/hall-doll-close-6-zoomed.webp";
+import BG_LIVING_ROOM_CLEAN from "/public/assets/the-package/images/living-room-clean.webp";
+import BG_LIVING_ROOM_DOLL_1 from "/public/assets/the-package/images/living-room-doll-1.webp";
+import BG_LIVING_ROOM_DOLL_2 from "/public/assets/the-package/images/living-room-doll-2.webp";
+import BG_LIVING_ROOM_DOLL_3 from "/public/assets/the-package/images/living-room-doll-3.webp";
+import BG_LIVING_ROOM_DOLL_4 from "/public/assets/the-package/images/living-room-doll-4.webp";
+import BG_LIVING_ROOM_STAINED from "/public/assets/the-package/images/living-room-stained.webp";
+import BG_OPENED_BOX from "/public/assets/the-package/images/opened-box.webp";
+import BG_PARK from "/public/assets/the-package/images/park.webp";
+import BG_PARK_GHOST_1 from "/public/assets/the-package/images/park-ghost-1.webp";
+import BG_PARK_GHOST_2 from "/public/assets/the-package/images/park-ghost-2.webp";
+import BG_PARK_GHOST_3 from "/public/assets/the-package/images/park-ghost-3.webp";
+import BG_PARK_GHOST_4 from "/public/assets/the-package/images/park-ghost-4.webp";
+import BG_PARK_GHOST_5 from "/public/assets/the-package/images/park-ghost-5.webp";
+import BG_PARK_GHOST_6 from "/public/assets/the-package/images/park-ghost-6.webp";
+import BG_PEEPHOLE from "/public/assets/the-package/images/peephole.webp";
+import BG_PEEPHOLE_DELIVERY_MAN from "/public/assets/the-package/images/peephole-delivery-man.webp";
+import BG_PEEPHOLE_SHADOW from "/public/assets/the-package/images/peephole-shadow.webp";
+import BG_PEEPHOLE_SHADOW_BOX from "/public/assets/the-package/images/peephole-shadow-box.webp";
+import BG_POINT_AND_CLICK_TUTORIAL from "/public/assets/the-package/images/point-and-click-tutorial.webp";
+import BG_SNACKS from "/public/assets/the-package/images/snacks.webp";
 
 const Scenes = {
-  TUTORIAL: 'Scene_Tutorial',
-  START: 'Scene_Start',
-  BOX_TAKEN: 'Scene_Box_Taken',
-  BOX_UNTAKEN: 'Scene_Box_Untaken',
-  DOLL_INSIDE: 'Scene_Doll_Inside',
-  DOLL_OUTSIDE: 'Scene_Doll_Outside',
-  PARK_BAG_OPEN: 'Scene_Park_Bag_Open',
-  PARK_BAG_UNOPENED: 'Scene_Park_Bag_Unopened'
+  TUTORIAL: "Scene_Tutorial",
+  START: "Scene_Start",
+  BOX_TAKEN: "Scene_Box_Taken",
+  BOX_UNTAKEN: "Scene_Box_Untaken",
+  DOLL_INSIDE: "Scene_Doll_Inside",
+  DOLL_OUTSIDE: "Scene_Doll_Outside",
+  PARK_BAG_OPEN: "Scene_Park_Bag_Open",
+  PARK_BAG_UNOPENED: "Scene_Park_Bag_Unopened",
 };
 
 export function ThePackageStory() {
   const BGMS = {
-    HAPPY_MOMENTS: useSound('/assets/the-package/sounds/happy-moments.mp3', {
-      loop: true
+    HAPPY_MOMENTS: useSound("/assets/the-package/sounds/happy-moments.mp3", {
+      loop: true,
     }),
-    JAZZ: useSound('/assets/the-package/sounds/jazz-2min.mp3', { loop: true }),
-    PARK_AMBIANCE: useSound('/assets/the-package/sounds/park-ambiance.mp3', {
-      loop: true
+    JAZZ: useSound("/assets/the-package/sounds/jazz-2min.mp3", { loop: true }),
+    PARK_AMBIANCE: useSound("/assets/the-package/sounds/park-ambiance.mp3", {
+      loop: true,
     }),
     TSUTGUNOHI_SMALL: useSound(
-      '/assets/the-package/sounds/tsugunohi-theme.mp3',
+      "/assets/the-package/sounds/tsugunohi-theme.mp3",
       { loop: true, volume: 0.2 }
     ),
-    TSUTGUNOHI: useSound('/assets/the-package/sounds/tsugunohi-theme.mp3', {
-      loop: true
-    })
+    TSUTGUNOHI: useSound("/assets/the-package/sounds/tsugunohi-theme.mp3", {
+      loop: true,
+    }),
   };
 
   const SOUNDS = {
-    CONVERTING: useSound('/assets/the-package/sounds/converting.mp3')[0],
-    DIALING: useSound('/assets/the-package/sounds/dialing.mp3')[0],
-    DISLOCATION: useSound('/assets/the-package/sounds/dislocation.mp3')[0],
-    KNOCK: useSound('/assets/the-package/sounds/knock.aac')[0],
-    LAUGH_1: useSound('/assets/the-package/sounds/laugh-1.mp3')[0],
-    LAUGH_2: useSound('/assets/the-package/sounds/laugh-2.mp3')[0],
-    LAUGH_3: useSound('/assets/the-package/sounds/laugh-3.mp3')[0],
-    NOTIFICATION: useSound('/assets/the-package/sounds/notification.aac')[0],
-    PAPER_FLUTTER: useSound('/assets/the-package/sounds/paper-flutter.mp3')[0],
-    RUNNING: useSound('/assets/the-package/sounds/running.mp3')[0],
-    SCREAM_1: useSound('/assets/the-package/sounds/scream-1.mp3')[0],
-    SCREAM_2: useSound('/assets/the-package/sounds/scream-2.mp3')[0],
+    CONVERTING: useSound("/assets/the-package/sounds/converting.mp3")[0],
+    DIALING: useSound("/assets/the-package/sounds/dialing.mp3")[0],
+    DISLOCATION: useSound("/assets/the-package/sounds/dislocation.mp3")[0],
+    KNOCK: useSound("/assets/the-package/sounds/knock.aac")[0],
+    LAUGH_1: useSound("/assets/the-package/sounds/laugh-1.mp3")[0],
+    LAUGH_2: useSound("/assets/the-package/sounds/laugh-2.mp3")[0],
+    LAUGH_3: useSound("/assets/the-package/sounds/laugh-3.mp3")[0],
+    NOTIFICATION: useSound("/assets/the-package/sounds/notification.aac")[0],
+    PAPER_FLUTTER: useSound("/assets/the-package/sounds/paper-flutter.mp3")[0],
+    RUNNING: useSound("/assets/the-package/sounds/running.mp3")[0],
+    SCREAM_1: useSound("/assets/the-package/sounds/scream-1.mp3")[0],
+    SCREAM_2: useSound("/assets/the-package/sounds/scream-2.mp3")[0],
     UNLOCKING_DOOR: useSound(
-      '/assets/the-package/sounds/unlocking-door.aac'
+      "/assets/the-package/sounds/unlocking-door.aac"
     )[0],
-    UNZIP: useSound('/assets/the-package/sounds/unzip.mp3')[0],
-    WAILING: useSound('/assets/the-package/sounds/wailing.mp3')[0]
+    UNZIP: useSound("/assets/the-package/sounds/unzip.mp3")[0],
+    WAILING: useSound("/assets/the-package/sounds/wailing.mp3")[0],
   };
 
   const scenes = new Map<string, ReactNode>([
@@ -129,34 +129,34 @@ export function ThePackageStory() {
       Scenes.TUTORIAL,
       <Scene key={Scenes.TUTORIAL}>
         <TitleScreen>
-          <h1 className='text-8xl text-gray-50 uppercase'>El paquete</h1>
+          <h1 className="text-8xl text-gray-50 uppercase">El paquete</h1>
 
-          <div className='text-4xl'>
+          <div className="text-4xl">
             — Esta experiencia usa sonidos, por favor suba el volumen —
           </div>
 
-          <div className='mt-20 text-5xl'>
+          <div className="mt-20 text-5xl">
             Precione en cualquier lugar para continuar...
           </div>
         </TitleScreen>
 
         <ScreenText>
-          <div className='flex flex-col items-center space-y-8 max-w-3xl'>
-            <div className='mt-20 text-2xl'>Tutorial...</div>
+          <div className="flex flex-col items-center space-y-8 max-w-3xl">
+            <div className="mt-20 text-2xl">Tutorial...</div>
 
-            <h1 className='font-bold text-center'>— Point & Click —</h1>
+            <h1 className="font-bold text-center">— Point & Click —</h1>
 
-            <p className='text-2xl text-justify'>
-              Cuando el cursor se convierta en un{' '}
-              <span className='font-bold'>ojo</span> (👁️) tendrás que dar click
+            <p className="text-2xl text-justify">
+              Cuando el cursor se convierta en un{" "}
+              <span className="font-bold">ojo</span> (👁️) tendrás que dar click
               en algún lugar específico de la pantalla para continuar.
             </p>
 
-            <div className='mt-20 text-2xl'>
+            <div className="mt-20 text-2xl">
               Prueba con la siguiente imagen...
             </div>
 
-            <div className='mt-20 text-2xl'>
+            <div className="mt-20 text-2xl">
               Presiona click para avanzar a la prueba...
             </div>
           </div>
@@ -169,11 +169,11 @@ export function ThePackageStory() {
         <BlackScreen />
 
         <BranchDecision
-          options={[{ label: 'Si, comencemos...', to: Scenes.START }]}
+          options={[{ label: "Si, comencemos...", to: Scenes.START }]}
         >
-          <span className='text-white'>¿Entendido?</span>
+          <span className="text-white">¿Entendido?</span>
         </BranchDecision>
-      </Scene>
+      </Scene>,
     ],
     [
       Scenes.START,
@@ -250,13 +250,13 @@ export function ThePackageStory() {
 
         <BranchDecision
           options={[
-            { label: 'La agarro', to: Scenes.BOX_TAKEN },
-            { label: 'La dejo afuera', to: Scenes.BOX_UNTAKEN }
+            { label: "La agarro", to: Scenes.BOX_TAKEN },
+            { label: "La dejo afuera", to: Scenes.BOX_UNTAKEN },
           ]}
         >
           ¿Qué hago?
         </BranchDecision>
-      </Scene>
+      </Scene>,
     ],
     [
       Scenes.BOX_UNTAKEN,
@@ -302,18 +302,18 @@ export function ThePackageStory() {
         <Text>¿Mmm? ¿Otro repartidor?</Text>
         <Text>(Que clarito se mira ahora...)</Text>
 
-        <Text speaker='Repartidor'>Buenaaas, entregaaa...</Text>
+        <Text speaker="Repartidor">Buenaaas, entregaaa...</Text>
 
         <Sound audioControls={SOUNDS.UNLOCKING_DOOR} />
 
         <Background src={BG_DOOR_OPEN_DELIVERY_MAN.src} />
-        <Text speaker='Repartidor'>
+        <Text speaker="Repartidor">
           Buenas noches, entrega de parte de... ¿Carlos?
         </Text>
 
         <Text>Si, es correcto. Gracias.</Text>
 
-        <Text speaker='Repartidor'>Listo, buenas noches...</Text>
+        <Text speaker="Repartidor">Listo, buenas noches...</Text>
 
         <Sound audioControls={SOUNDS.UNLOCKING_DOOR} />
 
@@ -341,16 +341,16 @@ export function ThePackageStory() {
         <Text>¡Que otro rollo!</Text>
 
         <ScreenText>
-          <div className='text-center mb-4'>Comí hasta reventar...</div>
-          <div className='text-center'>
+          <div className="text-center mb-4">Comí hasta reventar...</div>
+          <div className="text-center">
             (Y todavía me sobran para mañana :D)
           </div>
         </ScreenText>
         <ScreenText>
-          <div className='uppercase text-center mb-8'>Final ①</div>
-          <div className='text-center text-4xl'>Gracias por jugar</div>
+          <div className="uppercase text-center mb-8">Final ①</div>
+          <div className="text-center text-4xl">Gracias por jugar</div>
         </ScreenText>
-      </Scene>
+      </Scene>,
     ],
     [
       Scenes.BOX_TAKEN,
@@ -386,19 +386,19 @@ export function ThePackageStory() {
 
         <Background src={BG_OPENED_BOX.src} durationMs={3000} />
 
-        <Text speaker='Carlos'>¡Hey! ¿Qué tal?</Text>
+        <Text speaker="Carlos">¡Hey! ¿Qué tal?</Text>
 
         <Text>Ehh... tranquilo... bueno hasta hace unos momentos...</Text>
 
-        <Text speaker='Carlos'>¿Por qué? ¿Qué paso?</Text>
+        <Text speaker="Carlos">¿Por qué? ¿Qué paso?</Text>
 
         <Text>Pues me entregarón el paquete, pe—</Text>
 
-        <Text speaker='Carlos'>
+        <Text speaker="Carlos">
           ¿Ah, ya te llegó? ¿Y qué ondas? ¿Qué pensas?
         </Text>
 
-        <Text speaker='Carlos'>¿Otro rollo, no?</Text>
+        <Text speaker="Carlos">¿Otro rollo, no?</Text>
 
         <Text>No... no diria que es otro rollo man.</Text>
 
@@ -406,19 +406,19 @@ export function ThePackageStory() {
 
         <Text>¿Por qué me mandaste esto?</Text>
 
-        <Text speaker='Carlos'>Ah... p- pensé que te iba a gustar</Text>
+        <Text speaker="Carlos">Ah... p- pensé que te iba a gustar</Text>
 
-        <Text speaker='Carlos'>No creí que esta seria tu reacción...</Text>
+        <Text speaker="Carlos">No creí que esta seria tu reacción...</Text>
 
         <Text>Bueno, no sé qué reacción esperabas que tuviera.</Text>
 
         <Text>¿Cómo pensabas que esto me iba a gustar?</Text>
 
-        <Text speaker='Carlos'>
+        <Text speaker="Carlos">
           Pero si solo son unos churros y galletas man.
         </Text>
 
-        <Text speaker='Carlos'>
+        <Text speaker="Carlos">
           ¿Será que paso mucho tiempo en el envío y por eso se miran mal?
         </Text>
 
@@ -427,16 +427,16 @@ export function ThePackageStory() {
         <Text>¿Churros y galletas?</Text>
         <Text>¿Eso fue lo que enviaste?</Text>
 
-        <Text speaker='Carlos'>Pues si, probalas aunque sea...</Text>
+        <Text speaker="Carlos">Pues si, probalas aunque sea...</Text>
 
-        <Text speaker='Carlos'>
+        <Text speaker="Carlos">
           Tal vez solo es que se miran raras, pero puede que sepan bien todavía.
         </Text>
 
         <Text>No... es que...</Text>
         <Text>No fue eso lo que estaba en la caja...</Text>
 
-        <Text speaker='Carlos'>¿Mmm? ¿Y qué es lo que había entonces?</Text>
+        <Text speaker="Carlos">¿Mmm? ¿Y qué es lo que había entonces?</Text>
 
         <Text>Es...</Text>
 
@@ -445,23 +445,23 @@ export function ThePackageStory() {
 
         <Text>Una muñeca.</Text>
 
-        <Text speaker='Carlos'>¿Una muñeca?</Text>
+        <Text speaker="Carlos">¿Una muñeca?</Text>
 
         <Text>Si, una de esas muñecas japonesas.</Text>
 
-        <Text speaker='Carlos'>Ah pues, eso no fue lo que envié.</Text>
+        <Text speaker="Carlos">Ah pues, eso no fue lo que envié.</Text>
 
-        <Text speaker='Carlos'>
+        <Text speaker="Carlos">
           ¿No será que la pediste vos y no te acordas?
         </Text>
 
         <Text>Nambe, que voy a andar pidiendo esta cosa.</Text>
 
-        <Text speaker='Carlos'>
+        <Text speaker="Carlos">
           Ahh, entonces te la entregarón por error poe.
         </Text>
 
-        <Text speaker='Carlos'>
+        <Text speaker="Carlos">
           De seguro es de alguien mas de los apartamentos y por error te lo
           entregarón a tí.
         </Text>
@@ -472,27 +472,27 @@ export function ThePackageStory() {
         <Text>Tiene sentido fijate.</Text>
         <Text>Fijo viene alguien después a preguntar por el paquete.</Text>
 
-        <Text speaker='Carlos'>Mhmm</Text>
+        <Text speaker="Carlos">Mhmm</Text>
 
         <BGM player={BGMS.JAZZ} />
 
-        <Text speaker='Carlos'>
+        <Text speaker="Carlos">
           Pucha, la fregada es que te dije que era lo que te mandé de verdad
           jajaja.
         </Text>
 
         <Text>Pucha, si hombe.</Text>
         <Text>
-          Pero ahora, cuando hagán la entrega, estaré seguro de que si es el tuyo
-          jaja.
+          Pero ahora, cuando hagán la entrega, estaré seguro de que si es el
+          tuyo jaja.
         </Text>
 
-        <Text speaker='Carlos'>Eso sí jaja.</Text>
-        <Text speaker='Carlos'>Dale pues, ahí hablamos después.</Text>
+        <Text speaker="Carlos">Eso sí jaja.</Text>
+        <Text speaker="Carlos">Dale pues, ahí hablamos después.</Text>
 
         <Text>Dale, nos vemos.</Text>
 
-        <Text speaker='Carlos'>Adios.</Text>
+        <Text speaker="Carlos">Adios.</Text>
 
         <Background src={BG_CLOSE_LIVING_ROOM.src} />
 
@@ -562,7 +562,7 @@ export function ThePackageStory() {
           <div
             className={clsx(
               CHILLER_FONT.className,
-              'text-red-700 tracking-widest text-7xl p-8 rounded-md bg-slate-50'
+              "text-red-700 tracking-widest text-7xl p-8 rounded-md bg-slate-50"
             )}
           >
             No la hagas enojar...
@@ -595,13 +595,13 @@ export function ThePackageStory() {
 
         <BranchDecision
           options={[
-            { label: 'La saco al pasillo', to: Scenes.DOLL_OUTSIDE },
-            { label: 'La dejo adentro', to: Scenes.DOLL_INSIDE }
+            { label: "La saco al pasillo", to: Scenes.DOLL_OUTSIDE },
+            { label: "La dejo adentro", to: Scenes.DOLL_INSIDE },
           ]}
         >
           ¿Qué hago?
         </BranchDecision>
-      </Scene>
+      </Scene>,
     ],
     [
       Scenes.DOLL_OUTSIDE,
@@ -634,7 +634,7 @@ export function ThePackageStory() {
         <Background src={BG_DOOR_CLOSE.src} />
 
         <StopBGM />
-        <CreepyText speaker='???'>¿Por qué?</CreepyText>
+        <CreepyText speaker="???">¿Por qué?</CreepyText>
 
         <Text>?!?!?</Text>
         <Text>¿Qué fue eso?</Text>
@@ -647,13 +647,13 @@ export function ThePackageStory() {
 
         <Text>...</Text>
 
-        <CreepyText speaker='???'>¿Por qué?</CreepyText>
+        <CreepyText speaker="???">¿Por qué?</CreepyText>
 
         <Text>?!?!?</Text>
 
         <Background src={BG_HALL_DOLL_CLOSE_1.src} />
 
-        <CreepyText speaker='???'>
+        <CreepyText speaker="???">
           ¿Por qué no queres que este con vos?
         </CreepyText>
 
@@ -663,11 +663,11 @@ export function ThePackageStory() {
 
         <Background src={BG_HALL_DOLL_CLOSE_1.src} />
 
-        <CreepyText speaker='Muñeca'>
+        <CreepyText speaker="Muñeca">
           ¿¡QUE POR QUÉ NO QUERES QUE ESTE CON VOS!?
         </CreepyText>
-        <CreepyText speaker='Muñeca'>¿¡POR QUÉ!?</CreepyText>
-        <CreepyText speaker='Muñeca'>¡AHHHHH!</CreepyText>
+        <CreepyText speaker="Muñeca">¿¡POR QUÉ!?</CreepyText>
+        <CreepyText speaker="Muñeca">¡AHHHHH!</CreepyText>
 
         <Sound audioControls={SOUNDS.CONVERTING} />
 
@@ -676,8 +676,8 @@ export function ThePackageStory() {
         <Background src={BG_HALL_DOLL_CLOSE_3.src} instant durationMs={100} />
         <Background src={BG_HALL_DOLL_CLOSE_4.src} instant durationMs={1000} />
 
-        <CreepyText speaker='Muñeca'>¡PERO NO TE PREOCUPES!</CreepyText>
-        <CreepyText speaker='Muñeca'>¡AHORA SOLO SERÁS UNO MÁS!</CreepyText>
+        <CreepyText speaker="Muñeca">¡PERO NO TE PREOCUPES!</CreepyText>
+        <CreepyText speaker="Muñeca">¡AHORA SOLO SERÁS UNO MÁS!</CreepyText>
 
         <Sound audioControls={SOUNDS.SCREAM_1} />
 
@@ -711,21 +711,21 @@ export function ThePackageStory() {
           <div
             className={clsx(
               CHILLER_FONT.className,
-              'flex flex-col items-center space-y-8 text-red-500'
+              "flex flex-col items-center space-y-8 text-red-500"
             )}
           >
-            <div className='text-center text-5xl'>... Ahora...</div>
-            <div className='text-center text-7xl'>
+            <div className="text-center text-5xl">... Ahora...</div>
+            <div className="text-center text-7xl">
               ...siempre estarás conmigo...
             </div>
           </div>
         </ScreenText>
 
         <ScreenText>
-          <div className='uppercase text-center mb-8'>Final ②</div>
-          <div className='text-center text-4xl'>Gracias por jugar</div>
+          <div className="uppercase text-center mb-8">Final ②</div>
+          <div className="text-center text-4xl">Gracias por jugar</div>
         </ScreenText>
-      </Scene>
+      </Scene>,
     ],
     [
       Scenes.DOLL_INSIDE,
@@ -760,11 +760,11 @@ export function ThePackageStory() {
           <div
             className={clsx(
               CHILLER_FONT.className,
-              'text-red-700 tracking-widest text-7xl p-8 rounded-md bg-slate-50 flex flex-col items-center space-y-4'
+              "text-red-700 tracking-widest text-7xl p-8 rounded-md bg-slate-50 flex flex-col items-center space-y-4"
             )}
           >
             <div>Cuídala... si no lo haces...</div>
-            <div className='text-8xl'>...no verás la luz...</div>
+            <div className="text-8xl">...no verás la luz...</div>
           </div>
         </ScreenText>
 
@@ -793,9 +793,7 @@ export function ThePackageStory() {
         <Sound audioControls={SOUNDS.LAUGH_2} />
         <BlackScreen />
 
-        <CreepyText speaker='???'>
-          ... encuéntrame, encuéntrame...
-        </CreepyText>
+        <CreepyText speaker="???">... encuéntrame, encuéntrame...</CreepyText>
 
         <Background src={BG_LIVING_ROOM_DOLL_1.src} />
 
@@ -883,13 +881,13 @@ export function ThePackageStory() {
 
         <BranchDecision
           options={[
-            { label: 'La abro', to: Scenes.PARK_BAG_OPEN },
-            { label: 'Me largo de aquí', to: Scenes.PARK_BAG_UNOPENED }
+            { label: "La abro", to: Scenes.PARK_BAG_OPEN },
+            { label: "Me largo de aquí", to: Scenes.PARK_BAG_UNOPENED },
           ]}
         >
           ¿Que hago?
         </BranchDecision>
-      </Scene>
+      </Scene>,
     ],
     [
       Scenes.PARK_BAG_OPEN,
@@ -905,17 +903,17 @@ export function ThePackageStory() {
         <BGM player={BGMS.TSUTGUNOHI_SMALL} />
 
         <Text>¿Có- cómo llego aquí?</Text>
-        <CreepyText speaker='???'>¿Por qué te fuiste?</CreepyText>
+        <CreepyText speaker="???">¿Por qué te fuiste?</CreepyText>
 
         <Text>¿Q- Qué?...</Text>
         <Text>¿Es- esta... hablando?</Text>
 
-        <CreepyText speaker='Muñeca'>
+        <CreepyText speaker="Muñeca">
           Estabamos comenzando a divertirnos ¿no es así?
         </CreepyText>
 
-        <CreepyText speaker='Muñeca'>¿¡AHH!?</CreepyText>
-        <CreepyText speaker='Muñeca'>¿¡NO ES ASÍ!?</CreepyText>
+        <CreepyText speaker="Muñeca">¿¡AHH!?</CreepyText>
+        <CreepyText speaker="Muñeca">¿¡NO ES ASÍ!?</CreepyText>
 
         <Sound audioControls={SOUNDS.LAUGH_2} />
 
@@ -927,15 +925,15 @@ export function ThePackageStory() {
         <Text>???</Text>
         <Text>¿El repartidor...?</Text>
 
-        <CreepyText speaker='El Repartidor'>...</CreepyText>
+        <CreepyText speaker="El Repartidor">...</CreepyText>
 
         <Background src={BG_BAG_DOLL_1.src} />
 
-        <CreepyText speaker='Muñeca'>¿¡AHH!?</CreepyText>
-        <CreepyText speaker='Muñeca'>
+        <CreepyText speaker="Muñeca">¿¡AHH!?</CreepyText>
+        <CreepyText speaker="Muñeca">
           ¿¡POR QUÉ ME QUERIAS DEJAR!? ¿¡AHH!?
         </CreepyText>
-        <CreepyText speaker='Muñeca'>¡AHHHHH!</CreepyText>
+        <CreepyText speaker="Muñeca">¡AHHHHH!</CreepyText>
 
         <Sound audioControls={SOUNDS.CONVERTING} />
 
@@ -951,14 +949,14 @@ export function ThePackageStory() {
 
         <Background src={BG_PARK_GHOST_1.src} />
 
-        <CreepyText speaker='El Repartidor'>...</CreepyText>
-        <CreepyText speaker='El Repartidor'>
+        <CreepyText speaker="El Repartidor">...</CreepyText>
+        <CreepyText speaker="El Repartidor">
           ...¿acaso no te pedí que la cuidaras?...
         </CreepyText>
-        <CreepyText speaker='El Repartidor'>
+        <CreepyText speaker="El Repartidor">
           ...si no quieres estar con ella...
         </CreepyText>
-        <CreepyText speaker='El Repartidor'>
+        <CreepyText speaker="El Repartidor">
           ...no deberías de estar entonces...
         </CreepyText>
 
@@ -975,20 +973,20 @@ export function ThePackageStory() {
         <BlackScreen />
 
         <ScreenText>
-          <div className='flex flex-col items-center space-y-8'>
-            <div className='text-center text-3xl'>Desde ese momento...</div>
-            <div className='text-center text-3xl'>
+          <div className="flex flex-col items-center space-y-8">
+            <div className="text-center text-3xl">Desde ese momento...</div>
+            <div className="text-center text-3xl">
               No importa cuantas veces vuelva a abrir los ojos...
             </div>
-            <div className='text-center'>...solo veo oscuridad...</div>
+            <div className="text-center">...solo veo oscuridad...</div>
           </div>
         </ScreenText>
 
         <ScreenText>
-          <div className='uppercase text-center mb-8'>Final ④</div>
-          <div className='text-center text-4xl'>Gracias por jugar</div>
+          <div className="uppercase text-center mb-8">Final ④</div>
+          <div className="text-center text-4xl">Gracias por jugar</div>
         </ScreenText>
-      </Scene>
+      </Scene>,
     ],
     [
       Scenes.PARK_BAG_UNOPENED,
@@ -1003,31 +1001,30 @@ export function ThePackageStory() {
         <BlackScreen durationMs={1000} />
 
         <ScreenText>
-          <div className='flex flex-col items-center space-y-8'>
-            <div className='text-center text-3xl'>
+          <div className="flex flex-col items-center space-y-8">
+            <div className="text-center text-3xl">
               Deje mi maleta ahí, pero no importa...
             </div>
-            <div className='text-center text-3xl'>
+            <div className="text-center text-3xl">
               Unas semanas después pude mudarme de departamento.
             </div>
-            <div className='text-center'>...Odio a las muñecas ahora...</div>
+            <div className="text-center">...Odio a las muñecas ahora...</div>
           </div>
         </ScreenText>
 
         <ScreenText>
-          <div className='uppercase text-center mb-8'>Final ③</div>
-          <div className='text-center text-4xl'>Gracias por jugar</div>
+          <div className="uppercase text-center mb-8">Final ③</div>
+          <div className="text-center text-4xl">Gracias por jugar</div>
         </ScreenText>
-      </Scene>
-    ]
+      </Scene>,
+    ],
   ]);
-
 
   return (
     <div
       className={clsx(
         ROBOTO_MONO.className,
-        'relative h-screen aspect-video bg-gray-900 overflow-hidden'
+        "relative h-screen aspect-video bg-gray-900 overflow-hidden"
       )}
     >
       <GameProvider initialSceneId={Scenes.TUTORIAL} scenes={scenes}>
