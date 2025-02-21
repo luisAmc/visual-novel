@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang='en'>
       <body
         className={clsx(
-          CHILLER_FONT.className,
+          // CHILLER_FONT.className,
           'flex min-h-screen items-center justify-center'
         )}
       >
