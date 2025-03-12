@@ -13,7 +13,7 @@ export function BranchDecision({ options, children }: BranchDecisionProps) {
   const { goToScene } = useGame();
 
   return (
-    <Action name='Decision'>
+    <Action name='BranchDecision'>
       {(controls) => (
         <motion.div
           animate={controls}

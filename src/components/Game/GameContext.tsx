@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
 import { GameLocation, SceneId, createGameHistory } from './GameState';
 import { SceneProvider } from '../Scene/SceneContext';

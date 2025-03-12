@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { cn } from "~/utils/cn";
 
@@ -8,10 +6,11 @@ export function Stories() {
     { title: "Visita en el baño", href: "/bathroom-visit" },
     { title: "Alguien toca la puerta", href: "/knock-on-the-door" },
     { title: "El Paquete", href: "/the-package" },
+    { title: "Capture_AI", href: "/take-the-photo" },
   ];
 
   return (
-    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-6">
       {stories.map(({ title, href }, i) => (
         <StoryCard key={href} number={i + 1} title={title} href={href} />
       ))}

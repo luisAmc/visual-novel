@@ -31,7 +31,7 @@ export function BlackScreen({ durationMs = 500 }: { durationMs?: number }) {
             }
           }}
         >
-          <div className='h-full bg-gray-900 aspect-video'></div>
+          <div className='h-full bg-black aspect-video'></div>
         </motion.div>
       )}
     </Action>
