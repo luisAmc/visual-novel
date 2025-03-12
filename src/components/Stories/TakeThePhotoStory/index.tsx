@@ -16,17 +16,19 @@ import { Scene } from "~/components/Scene";
 import { TitleScreen } from "~/components/Action/TitleScreen";
 import { type ReactNode } from "react";
 import useSound from "use-sound";
+import { useImagesPreload } from "./useImagesPreload";
+import * as images from "./images";
 
-import BG_STORES from "/public/assets/take-the-photo/images/stores.webp";
-import BG_FRIEND from "/public/assets/take-the-photo/images/friend.webp";
-import BG_APP_START from "/public/assets/take-the-photo/images/app_start.webp";
-import BG_FRIEND_PHOTO from "/public/assets/take-the-photo/images/friend_photo.webp";
-import BG_MINISO from "/public/assets/take-the-photo/images/miniso.webp";
-import BG_TACOS from "/public/assets/take-the-photo/images/tacos.webp";
-import BG_GHOUL_JUMPSCARE from "/public/assets/take-the-photo/images/ghoul_jumpscare.gif";
-// import CHAR_FRIEND from "/public/assets/take-the-photo/friend.webp";
-// import CHAR_FRIEND_PHOTO from "/public/assets/take-the-photo/friend-photo.webp";
-// import CHAR_PHONE from "/public/assets/take-the-photo/phone.webp";
+const {
+  BG_STORES,
+  BG_FRIEND,
+  BG_APP_START,
+  BG_FRIEND_PHOTO,
+  BG_MINISO,
+  BG_TACOS,
+  BG_GHOUL_JUMPSCARE,
+  // LOAD_TEST,
+} = images;
 
 const Scenes = {
   INITIAL: "Scene_Initial",
@@ -37,6 +39,8 @@ const Scenes = {
 };
 
 export function TakeThePhoto() {
+  const { preloaded, progress } = useImagesPreload(images);
+
   const BGMS = {
     HAPPY_MOMENTS: useSound("/assets/take-the-photo/sounds/happy-moments.mp3", {
       loop: true,
@@ -47,10 +51,10 @@ export function TakeThePhoto() {
     BUSY_STORES: useSound("/assets/take-the-photo/sounds/busy_stores.mp3", {
       loop: true,
     }),
-    APP_LOADING: useSound("", { loop: true }),
-    MYSTERIOUS: useSound("", { loop: true }),
-    WHISPER: useSound("", { loop: true }),
-    JUMPSCARE: useSound("", { loop: true }),
+    // APP_LOADING: useSound("", { loop: true }),
+    // MYSTERIOUS: useSound("", { loop: true }),
+    // WHISPER: useSound("", { loop: true }),
+    // JUMPSCARE: useSound("", { loop: true }),
   };
 
   const scenes = new Map<string, ReactNode>([
@@ -366,11 +370,18 @@ export function TakeThePhoto() {
 
   return (
     <MobileBounds>
-      <GameProvider initialSceneId={Scenes.INITIAL} scenes={scenes}>
-        {(render) => (
-          <div className="flex h-full w-full flex-col">{render()}</div>
-        )}
-      </GameProvider>
+      {preloaded ? (
+        <GameProvider initialSceneId={Scenes.INITIAL} scenes={scenes}>
+          {(render) => (
+            <div className="flex h-full w-full flex-col">{render()}</div>
+          )}
+        </GameProvider>
+      ) : (
+        <div className="w-full h-full flex flex-col items-center justify-center text-lg">
+          <div>Precargando las imagenes...</div>
+          <div className="text-4xl font-bold">{progress}%</div>
+        </div>
+      )}
     </MobileBounds>
   );
 }
