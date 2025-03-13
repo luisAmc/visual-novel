@@ -43,7 +43,7 @@ export function ActionButton({ to, children }: ActionButtonProps) {
                     goToScene(to);
                   }
                 }}
-                className="rounded-full p-12 size-44 flex items-center justify-center bg-gray-950/80 shadow-sm hover:bg-gray-700 text-2xl"
+                className="rounded-full p-12 size-44 flex items-center justify-center bg-gray-900 shadow-sm hover:bg-gray-700 text-2xl"
               >
                 {children}
               </motion.button>

@@ -33,31 +33,33 @@ export function MobileDecision({ options, children }: MobileDecisionProps) {
             },
           }}
         >
-          <div className="h-full w-full absolute flex flex-col justify-center gap-y-12">
-            {children && (
-              <div className="flex items-center justify-center text-3xl">
-                {children}
+          <div className="px-2 absolute flex flex-col bottom-16 w-full justify-center">
+            <div className="w-full px-4 py-6 rounded-xl bg-gray-950/35 flex flex-col justify-center gap-y-8">
+              {children && (
+                <div className="flex items-center text-center font-medium justify-center text-2xl text-gray-950">
+                  {children}
+                </div>
+              )}
+
+              <div className="justify-center flex flex-col gap-y-3 items-center">
+                {options.map((option) => (
+                  <motion.button
+                    key={option.label}
+                    onClick={(event) => {
+                      if (option.to) {
+                        event.stopPropagation();
+
+                        goToScene(option.to);
+                      }
+
+                      option.onClick?.();
+                    }}
+                    className="h-fit w-full text-start px-4 py-3 rounded-md bg-gray-950/80 shadow-sm hover:bg-gray-700 text-lg"
+                  >
+                    {option.label}
+                  </motion.button>
+                ))}
               </div>
-            )}
-
-            <div className="px-4 justify-center flex flex-col gap-y-3 items-center">
-              {options.map((option) => (
-                <motion.button
-                  key={option.label}
-                  onClick={(event) => {
-                    if (option.to) {
-                      event.stopPropagation();
-
-                      goToScene(option.to);
-                    }
-
-                    option.onClick?.();
-                  }}
-                  className="h-fit w-full text-start px-4 py-3 rounded-md bg-gray-950/80 shadow-sm hover:bg-gray-700 text-lg"
-                >
-                  {option.label}
-                </motion.button>
-              ))}
             </div>
           </div>
         </motion.div>

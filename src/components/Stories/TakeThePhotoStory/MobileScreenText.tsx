@@ -29,7 +29,7 @@ export function MobileScreenText({ children }: ScreenTextProps) {
           }}
           className="pointer-events-none absolute inset-0"
         >
-          <div className="absolute inset-0 flex flex-col text-lg px-12 items-center justify-center gap-y-4 bg-gray-950/90">
+          <div className="absolute inset-0 flex flex-col text-lg px-12 items-center text-center justify-center gap-y-4 bg-gray-950/90">
             {children}
           </div>
         </motion.div>
