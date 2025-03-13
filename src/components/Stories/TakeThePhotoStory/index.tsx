@@ -638,7 +638,7 @@ export function TakeThePhoto() {
         <MobileDecision
           options={[
             {
-              label: "Tomas unas cuantas más",
+              label: "Tomar unas cuantas más",
               to: Scenes.DID_TAKE_MORE_PHOTOS,
             },
             { label: "Paremos aquí", to: Scenes.DIDNT_TAKE_MORE_PHOTOS },
