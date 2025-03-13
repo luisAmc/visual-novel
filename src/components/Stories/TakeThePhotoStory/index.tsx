@@ -104,7 +104,7 @@ export function TakeThePhoto() {
 
         <BlackScreen />
 
-        <ActionButton to={Scenes.DID_TAKE_MORE_PHOTOS}>Comenzar</ActionButton>
+        <ActionButton to={Scenes.START}>Comenzar</ActionButton>
       </Scene>,
     ],
     [
