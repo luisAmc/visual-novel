@@ -184,7 +184,7 @@ export function TakeThePhoto() {
             { label: "Esperemos un poco", to: Scenes.WAITING },
           ]}
         >
-          ¿Dar una vuela?
+          ¿Dar una vuelta?
         </MobileDecision>
       </Scene>,
     ],
