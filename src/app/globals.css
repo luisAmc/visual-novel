@@ -1,12 +1,7 @@
 @import "tailwindcss";
 
 @layer base {
-  :root {
-    --doc-height: 100%;
-  }
-
   body {
-    @apply bg-gray-900 text-gray-50 text-6xl antialiased;
-    height: var(--doc-height);
+    @apply bg-gray-950 text-gray-50 h-svh scroll-smooth text-6xl font-sans antialiased;
   }
 }

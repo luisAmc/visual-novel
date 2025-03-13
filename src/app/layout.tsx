@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import "./globals.css";
 
 export default function RootLayout({
@@ -8,9 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx("flex min-h-screen items-center justify-center")}>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
