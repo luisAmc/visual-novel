@@ -29,6 +29,7 @@ const {
   BG_APP_START,
   BG_FRIEND,
   BG_GHOUL_JUMPSCARE,
+  BG_GHOUL_PRE_JUMPSCARE,
   BG_MINISO,
   BG_STORES,
   BG_TACOS,
@@ -103,7 +104,7 @@ export function TakeThePhoto() {
 
         <BlackScreen />
 
-        <ActionButton to={Scenes.START}>Comenzar</ActionButton>
+        <ActionButton to={Scenes.DID_TAKE_MORE_PHOTOS}>Comenzar</ActionButton>
       </Scene>,
     ],
     [
@@ -923,6 +924,12 @@ export function TakeThePhoto() {
         </MobileText>
 
         <MobileText>Qu- qué...</MobileText>
+
+        <PortraitBackground
+          src={BG_GHOUL_PRE_JUMPSCARE.src}
+          entranceDuration={0.15}
+          durationMs={150}
+        />
 
         <BGM player={BGMS.JUMPSCARE} />
 

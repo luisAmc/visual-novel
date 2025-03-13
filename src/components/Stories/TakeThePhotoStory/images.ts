@@ -7,6 +7,7 @@ import BG_APP_LOADING from "/public/assets/take-the-photo/images/app_loading.web
 import BG_APP_START from "/public/assets/take-the-photo/images/app_start.webp";
 import BG_FRIEND from "/public/assets/take-the-photo/images/friend.webp";
 import BG_GHOUL_JUMPSCARE from "/public/assets/take-the-photo/images/ghoul_jumpscare.gif";
+import BG_GHOUL_PRE_JUMPSCARE from "/public/assets/take-the-photo/images/ghoul_pre_jumpscare.webp";
 import BG_MINISO from "/public/assets/take-the-photo/images/miniso.webp";
 import BG_STORES from "/public/assets/take-the-photo/images/stores.webp";
 import BG_TACOS from "/public/assets/take-the-photo/images/tacos.webp";
@@ -21,6 +22,7 @@ export {
   BG_APP_START,
   BG_FRIEND,
   BG_GHOUL_JUMPSCARE,
+  BG_GHOUL_PRE_JUMPSCARE,
   BG_MINISO,
   BG_STORES,
   BG_TACOS,

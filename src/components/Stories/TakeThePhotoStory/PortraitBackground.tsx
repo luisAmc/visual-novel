@@ -5,12 +5,14 @@ interface BackgroundProps {
   src: string;
   durationMs?: number;
   instant?: boolean;
+  entranceDuration?: number;
 }
 
 export function PortraitBackground({
   src,
   durationMs = 500,
   instant = false,
+  entranceDuration = 1,
 }: BackgroundProps) {
   return (
     <Action
@@ -29,7 +31,7 @@ export function PortraitBackground({
             initial: { opacity: 0 },
             entrance: {
               opacity: 1,
-              transition: { duration: instant ? 0.1 : 1 },
+              transition: { duration: instant ? 0.1 : entranceDuration },
             },
             exit: {
               opacity: 0,
