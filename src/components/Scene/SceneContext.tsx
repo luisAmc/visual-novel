@@ -1,12 +1,12 @@
-import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
-import { Statement } from '../Statement/StatementContext';
-import { useGame } from '../Game/GameContext';
-import { useMeasure } from '@react-hookz/web';
-import { SceneId } from '../Game/GameState';
-import useEventCallback from 'use-event-callback';
+import { ReactNode, createContext, useContext, useMemo, useState } from "react";
+import { Statement } from "../Statement/StatementContext";
+import { useGame } from "../Game/GameContext";
+import { useMeasure } from "@react-hookz/web";
+import { BranchId } from "../Game/GameState";
+import useEventCallback from "use-event-callback";
 
 interface SceneContextType {
-  sceneId: SceneId;
+  branchId: BranchId;
   containerRect: { width: number; height: number };
   focusedStatementIndex: number;
   registerStatement: (statement: Statement) => void;
@@ -18,16 +18,16 @@ interface SceneContextType {
 
 const SceneContext = createContext<SceneContextType | null>(null);
 
-interface SceneProviderProps {
-  sceneId: SceneId;
+interface BranchProviderProps {
+  branchId: BranchId;
   children: ReactNode;
 }
 
-export function SceneProvider({ sceneId, children }: SceneProviderProps) {
+export function BranchProvider({ branchId, children }: BranchProviderProps) {
   const { currentLocation, goToLocation } = useGame();
 
   const focusedStatementIndex =
-    sceneId === currentLocation.sceneId ? currentLocation.statementIndex : 0;
+    branchId === currentLocation.branchId ? currentLocation.statementIdx : 0;
 
   const [statementByIndex] = useState(() => new Map<number, Statement>());
   const [containerRect, containerRef] = useMeasure<HTMLDivElement>();
@@ -43,7 +43,7 @@ export function SceneProvider({ sceneId, children }: SceneProviderProps) {
     );
 
     if (nextStatement) {
-      goToLocation(sceneId, nextStatement.index);
+      goToLocation(branchId, nextStatement.index);
     }
   });
 
@@ -58,23 +58,23 @@ export function SceneProvider({ sceneId, children }: SceneProviderProps) {
       };
 
       return {
-        sceneId,
+        branchId,
         containerRect,
         focusedStatementIndex,
         registerStatement,
         getStatementByIndex,
-        goToNextStatement
+        goToNextStatement,
       };
     } else {
       return null;
     }
   }, [
-    sceneId,
+    branchId,
     containerRect,
     focusedStatementIndex,
     goToLocation,
     goToNextStatement,
-    statementByIndex
+    statementByIndex,
   ]);
 
   return (
@@ -91,7 +91,7 @@ export function SceneProvider({ sceneId, children }: SceneProviderProps) {
 
         const statement = statementByIndex.get(focusedStatementIndex);
 
-        if (statement?.type.variation.startsWith('skippable')) {
+        if (statement?.type.variation.startsWith("skippable")) {
           const focusedStatement = statementByIndex.get(focusedStatementIndex);
 
           const entered = focusedStatement?.enter() ?? false;
@@ -115,7 +115,7 @@ export function useScene() {
   const context = useContext(SceneContext);
 
   if (!context) {
-    throw new Error('`useScene` can only be use inside a `Game` component.');
+    throw new Error("`useScene` can only be use inside a `Game` component.");
   }
 
   return context;

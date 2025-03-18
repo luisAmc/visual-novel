@@ -1,10 +1,10 @@
 import { Action } from '.';
 import { motion } from 'framer-motion';
 import { useGame } from '../Game/GameContext';
-import { SceneId } from '../Game/GameState';
+import { BranchId } from '../Game/GameState';
 
 interface DecisionProps {
-  options: Array<{ label: string; to?: SceneId }>;
+  options: Array<{ label: string; to?: BranchId }>;
   children: string;
 }
 
