@@ -18,6 +18,7 @@ import { type ReactNode } from "react";
 import { useImagesPreload } from "./useImagesPreload";
 import * as images from "./images";
 import useSound from "use-sound";
+import { Sound } from "~/components/Action/Sound";
 
 const {
   BG_APP_FILTER,
@@ -790,9 +791,7 @@ export function TakeThePhoto() {
 
         <PortraitBackground src={BG_APP_FRIEND.src} />
 
-        <BGM player={BGMS.CAMERA_SHUTTER} />
-
-        <BGM player={BGMS.BUSY_STORES} />
+        <Sound audioControls={BGMS.CAMERA_SHUTTER[0]} />
 
         <PortraitBackground src={BG_APP_LOADING.src} />
 
@@ -830,9 +829,7 @@ export function TakeThePhoto() {
 
         <PortraitBackground src={BG_APP_FRIEND.src} />
 
-        <BGM player={BGMS.CAMERA_SHUTTER} />
-
-        <BGM player={BGMS.BUSY_STORES} />
+        <Sound audioControls={BGMS.CAMERA_SHUTTER[0]} />
 
         <PortraitBackground src={BG_APP_LOADING.src} />
 
@@ -854,10 +851,10 @@ export function TakeThePhoto() {
           Aunque atras de vos no hay nada... ¿Qué es eso...?
         </MobileText>
 
-        <BGM player={BGMS.CAMERA_SHUTTER} />
-        <BGM player={BGMS.CAMERA_SHUTTER} />
-        <BGM player={BGMS.CAMERA_SHUTTER} />
-        <BGM player={BGMS.CAMERA_SHUTTER} />
+        <Sound audioControls={BGMS.CAMERA_SHUTTER[0]} />
+        <Sound audioControls={BGMS.CAMERA_SHUTTER[0]} />
+        <Sound audioControls={BGMS.CAMERA_SHUTTER[0]} />
+        <Sound audioControls={BGMS.CAMERA_SHUTTER[0]} />
 
         <MobileText>!!!</MobileText>
         <MobileText>Que viruseada me pegast-</MobileText>
@@ -879,15 +876,13 @@ export function TakeThePhoto() {
 
         <PortraitBackground src={BG_APP_FRIEND.src} />
 
-        <BGM player={BGMS.CAMERA_SHUTTER} />
+        <Sound audioControls={BGMS.CAMERA_SHUTTER[0]} />
 
         <PortraitBackground src={BG_APP_LOADING.src} />
 
-        <BGM player={BGMS.LAUGH} />
+        <Sound audioControls={BGMS.LAUGH[0]} />
 
         <PortraitBackground src={BG_APP_GHOUL_CLOSE.src} />
-
-        <BGM player={BGMS.WHISPERING} />
 
         <MobileText>
           <div
@@ -925,19 +920,11 @@ export function TakeThePhoto() {
 
         <MobileText>Qu- qué...</MobileText>
 
-        <PortraitBackground
-          src={BG_GHOUL_PRE_JUMPSCARE.src}
-          entranceDuration={0.15}
-          durationMs={150}
-        />
-
-        <BGM player={BGMS.JUMPSCARE} />
+        <Sound audioControls={BGMS.JUMPSCARE[0]} />
 
         <PortraitBackground src={BG_GHOUL_JUMPSCARE.src} durationMs={4000} />
 
         <BlackScreen />
-
-        <BGM player={BGMS.WHISPERING} />
 
         <MobileScreenText>
           <div>Puedo ver a mis amigos...</div>
