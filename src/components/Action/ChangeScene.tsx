@@ -1,9 +1,9 @@
 import { Action } from '.';
 import { useGame } from '../Game/GameContext';
 import { motion } from 'framer-motion';
-import { BranchId } from '../Game/GameState';
+import { SceneId } from '../Game/GameState';
 
-export function ChangeScene({ to }: { to: BranchId }) {
+export function ChangeScene({ to }: { to: SceneId }) {
   const { goToScene } = useGame();
 
   return (

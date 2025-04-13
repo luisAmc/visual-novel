@@ -2,11 +2,11 @@ import { ReactNode, createContext, useContext, useMemo, useState } from "react";
 import { Statement } from "../Statement/StatementContext";
 import { useGame } from "../Game/GameContext";
 import { useMeasure } from "@react-hookz/web";
-import { BranchId } from "../Game/GameState";
+import { SceneId } from "../Game/GameState";
 import useEventCallback from "use-event-callback";
 
 interface SceneContextType {
-  branchId: BranchId;
+  sceneId: SceneId;
   containerRect: { width: number; height: number };
   focusedStatementIndex: number;
   registerStatement: (statement: Statement) => void;
@@ -18,16 +18,16 @@ interface SceneContextType {
 
 const SceneContext = createContext<SceneContextType | null>(null);
 
-interface BranchProviderProps {
-  branchId: BranchId;
+interface SceneProviderProps {
+  sceneId: SceneId;
   children: ReactNode;
 }
 
-export function BranchProvider({ branchId, children }: BranchProviderProps) {
+export function SceneProvider({ sceneId, children }: SceneProviderProps) {
   const { currentLocation, goToLocation } = useGame();
 
   const focusedStatementIndex =
-    branchId === currentLocation.branchId ? currentLocation.statementIdx : 0;
+    sceneId === currentLocation.sceneId ? currentLocation.statementIdx : 0;
 
   const [statementByIndex] = useState(() => new Map<number, Statement>());
   const [containerRect, containerRef] = useMeasure<HTMLDivElement>();
@@ -43,7 +43,7 @@ export function BranchProvider({ branchId, children }: BranchProviderProps) {
     );
 
     if (nextStatement) {
-      goToLocation(branchId, nextStatement.index);
+      goToLocation(sceneId, nextStatement.index);
     }
   });
 
@@ -58,7 +58,7 @@ export function BranchProvider({ branchId, children }: BranchProviderProps) {
       };
 
       return {
-        branchId,
+        sceneId,
         containerRect,
         focusedStatementIndex,
         registerStatement,
@@ -69,7 +69,7 @@ export function BranchProvider({ branchId, children }: BranchProviderProps) {
       return null;
     }
   }, [
-    branchId,
+    sceneId,
     containerRect,
     focusedStatementIndex,
     goToLocation,

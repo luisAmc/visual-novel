@@ -1,7 +1,7 @@
-export type BranchId = string;
+export type SceneId = string;
 
 export interface GameLocation {
-  branchId: BranchId;
+  sceneId: SceneId;
   statementIdx: number;
 }
 

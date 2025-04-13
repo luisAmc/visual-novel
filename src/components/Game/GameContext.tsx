@@ -1,13 +1,13 @@
 "use client";
 
 import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
-import { GameLocation, BranchId, createGameHistory } from './GameState';
-import { BranchProvider } from '../Scene/SceneContext';
+import { GameLocation, SceneId, createGameHistory } from './GameState';
+import { SceneProvider } from '../Scene/SceneContext';
 
 interface GameContextType {
   currentLocation: GameLocation;
-  goToScene: (sceneId: BranchId) => void;
-  goToLocation: (sceneId: BranchId, statementIndex: number) => void;
+  goToScene: (sceneId: SceneId) => void;
+  goToLocation: (sceneId: SceneId, statementIndex: number) => void;
 }
 
 const GameContext = createContext<GameContextType | null>(null);
@@ -16,7 +16,7 @@ export type SceneMap = Map<string, ReactNode>;
 
 interface GameProviderProps {
   scenes: SceneMap;
-  initialSceneId: BranchId;
+  initialSceneId: SceneId;
   children: (render: () => ReactNode) => ReactNode;
 }
 
@@ -26,7 +26,7 @@ export function GameProvider({
   children
 }: GameProviderProps) {
   const [currentLocation, setCurrentLocation] = useState<GameLocation>({
-    branchId: initialSceneId,
+    sceneId: initialSceneId,
     statementIdx: 0
   });
 
@@ -40,21 +40,21 @@ export function GameProvider({
   );
 
   const context = useMemo((): GameContextType => {
-    const goToScene = (sceneId: BranchId) => {
-      const isDifferentScene = sceneId !== currentLocation.branchId;
+    const goToScene = (sceneId: SceneId) => {
+      const isDifferentScene = sceneId !== currentLocation.sceneId;
 
       if (isDifferentScene) {
-        history.push({ branchId: sceneId, statementIdx: 0 });
+        history.push({ sceneId: sceneId, statementIdx: 0 });
       }
     };
 
-    const goToLocation = (sceneId: BranchId, statementIndex: number) => {
-      const isDifferentScene = sceneId !== currentLocation.branchId;
+    const goToLocation = (sceneId: SceneId, statementIndex: number) => {
+      const isDifferentScene = sceneId !== currentLocation.sceneId;
       const isDifferentStatement =
         statementIndex !== currentLocation.statementIdx;
 
       if (isDifferentScene || isDifferentStatement) {
-        history.push({ branchId: sceneId, statementIdx: statementIndex });
+        history.push({ sceneId: sceneId, statementIdx: statementIndex });
       }
     };
 
@@ -71,10 +71,10 @@ export function GameProvider({
         <>
           {Array.from(scenes.entries()).map(
             ([sceneId, SceneComp]) =>
-              sceneId === currentLocation.branchId && (
-                <BranchProvider key={sceneId} branchId={sceneId}>
+              sceneId === currentLocation.sceneId && (
+                <SceneProvider key={sceneId} sceneId={sceneId}>
                   {SceneComp}
-                </BranchProvider>
+                </SceneProvider>
               )
           )}
         </>

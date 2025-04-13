@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { Action } from "~/components/Action";
 import { useGame } from "~/components/Game/GameContext";
-import { BranchId } from "~/components/Game/GameState";
+import { SceneId } from "~/components/Game/GameState";
 
 interface ActionButtonProps {
-  to: BranchId;
+  to: SceneId;
   children: ReactNode;
 }
 

@@ -5,33 +5,33 @@ import {
   useMemo,
   useState,
 } from "react";
-import { BranchId, createGameHistory, GameLocation } from "./GameState";
-import { BranchProvider } from "../Scene/SceneContext";
+import { SceneId, createGameHistory, GameLocation } from "./GameState";
+import { SceneProvider } from "../Scene/SceneContext";
 
 interface GameContextType {
   currentLocation: GameLocation;
 
-  goToBranch(branchId: BranchId): void;
-  goToLocation(branchId: BranchId, statementIdx: number): void;
+  goToScene(sceneId: SceneId): void;
+  goToLocation(sceneId: SceneId, statementIdx: number): void;
 }
 
 const GameContext = createContext<GameContextType | null>(null);
 
-type BranchMap = Map<string, ReactNode>;
+type SceneMap = Map<string, ReactNode>;
 
 interface GameProviderProps {
-  branches: BranchMap;
-  initialBranchId: BranchId;
+  scenes: SceneMap;
+  initialSceneId: SceneId;
   children: (render: () => ReactNode) => ReactNode;
 }
 
 export function GameProvider({
-  branches,
-  initialBranchId,
+  scenes,
+  initialSceneId,
   children,
 }: GameProviderProps) {
   const [currentLocation, setCurrentLocation] = useState<GameLocation>({
-    branchId: initialBranchId,
+    sceneId: initialSceneId,
     statementIdx: 0,
   });
 
@@ -45,39 +45,39 @@ export function GameProvider({
   );
 
   const context: GameContextType = useMemo(() => {
-    const goToBranch = (branchId: BranchId) => {
-      const isDifferentBranch = branchId !== currentLocation.branchId;
+    const goToScene = (sceneId: SceneId) => {
+      const isDifferentScene = sceneId !== currentLocation.sceneId;
 
-      if (isDifferentBranch) {
-        history.push({ branchId, statementIdx: 0 });
+      if (isDifferentScene) {
+        history.push({ sceneId: sceneId, statementIdx: 0 });
       }
     };
 
-    const goToLocation = (branchId: BranchId, statementIdx: number) => {
-      const isDifferentBranch = branchId !== currentLocation.branchId;
+    const goToLocation = (sceneId: SceneId, statementIdx: number) => {
+      const isDifferentScene = sceneId !== currentLocation.sceneId;
 
       const isDifferenteStatement =
         statementIdx !== currentLocation.statementIdx;
 
-      const isDifferentLocation = isDifferentBranch || isDifferenteStatement;
+      const isDifferentLocation = isDifferentScene || isDifferenteStatement;
 
       if (isDifferentLocation) {
-        history.push({ branchId, statementIdx });
+        history.push({ sceneId: sceneId, statementIdx });
       }
     };
 
-    return { currentLocation, goToBranch, goToLocation };
+    return { currentLocation, goToScene, goToLocation };
   }, [currentLocation]);
 
   return (
     <GameContext.Provider value={context}>
       {children(() =>
-        Array.from(branches.entries()).map(
-          ([branchId, BranchComponent]) =>
-            branchId === currentLocation.branchId && (
-              <BranchProvider key={branchId} branchId={branchId}>
-                {BranchComponent}
-              </BranchProvider>
+        Array.from(scenes.entries()).map(
+          ([sceneId, SceneComponent]) =>
+            sceneId === currentLocation.sceneId && (
+              <SceneProvider key={sceneId} sceneId={sceneId}>
+                {SceneComponent}
+              </SceneProvider>
             )
         )
       )}

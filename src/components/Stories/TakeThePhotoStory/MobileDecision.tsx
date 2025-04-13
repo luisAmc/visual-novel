@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { Action } from "~/components/Action";
 import { useGame } from "~/components/Game/GameContext";
-import { BranchId } from "~/components/Game/GameState";
+import { SceneId } from "~/components/Game/GameState";
 
 interface MobileDecisionProps {
-  options: Array<{ label: string; to?: BranchId; onClick?: () => void }>;
+  options: Array<{ label: string; to?: SceneId; onClick?: () => void }>;
   children?: ReactNode;
 }
 
