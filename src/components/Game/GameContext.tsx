@@ -1,8 +1,14 @@
 "use client";
 
-import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
-import { GameLocation, SceneId, createGameHistory } from './GameState';
-import { SceneProvider } from '../Scene/SceneContext';
+import {
+  type ReactNode,
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
+import { GameLocation, SceneId, createGameHistory } from "./GameState";
+import { SceneProvider } from "../Scene/SceneContext";
 
 interface GameContextType {
   currentLocation: GameLocation;
@@ -12,7 +18,7 @@ interface GameContextType {
 
 const GameContext = createContext<GameContextType | null>(null);
 
-export type SceneMap = Map<string, ReactNode>;
+type SceneMap = Map<string, ReactNode>;
 
 interface GameProviderProps {
   scenes: SceneMap;
@@ -23,11 +29,11 @@ interface GameProviderProps {
 export function GameProvider({
   scenes,
   initialSceneId,
-  children
+  children,
 }: GameProviderProps) {
   const [currentLocation, setCurrentLocation] = useState<GameLocation>({
     sceneId: initialSceneId,
-    statementIndex: 0
+    statementIdx: 0,
   });
 
   const [history] = useState(() =>
@@ -35,7 +41,7 @@ export function GameProvider({
       initialLocations: [currentLocation],
       onLocationsChange: (latestLocation) => {
         setCurrentLocation(latestLocation);
-      }
+      },
     })
   );
 
@@ -44,41 +50,38 @@ export function GameProvider({
       const isDifferentScene = sceneId !== currentLocation.sceneId;
 
       if (isDifferentScene) {
-        history.push({ sceneId, statementIndex: 0 });
+        history.push({ sceneId: sceneId, statementIdx: 0 });
       }
     };
 
-    const goToLocation = (sceneId: SceneId, statementIndex: number) => {
+    const goToLocation = (sceneId: SceneId, statementIdx: number) => {
       const isDifferentScene = sceneId !== currentLocation.sceneId;
-      const isDifferentStatement =
-        statementIndex !== currentLocation.statementIndex;
 
-      if (isDifferentScene || isDifferentStatement) {
-        history.push({ sceneId, statementIndex });
+      const isDifferenteStatement =
+        statementIdx !== currentLocation.statementIdx;
+
+      const isDifferentLocation = isDifferentScene || isDifferenteStatement;
+
+      if (isDifferentLocation) {
+        history.push({ sceneId: sceneId, statementIdx });
       }
     };
 
-    return {
-      currentLocation,
-      goToScene,
-      goToLocation
-    };
+    return { currentLocation, goToScene, goToLocation };
   }, [currentLocation]);
 
   return (
     <GameContext.Provider value={context}>
-      {children(() => (
-        <>
-          {Array.from(scenes.entries()).map(
-            ([sceneId, SceneComp]) =>
-              sceneId === currentLocation.sceneId && (
-                <SceneProvider key={sceneId} sceneId={sceneId}>
-                  {SceneComp}
-                </SceneProvider>
-              )
-          )}
-        </>
-      ))}
+      {children(() =>
+        Array.from(scenes.entries()).map(
+          ([sceneId, SceneComponent]) =>
+            sceneId === currentLocation.sceneId && (
+              <SceneProvider key={sceneId} sceneId={sceneId}>
+                {SceneComponent}
+              </SceneProvider>
+            )
+        )
+      )}
     </GameContext.Provider>
   );
 }
@@ -87,7 +90,7 @@ export function useGame() {
   const context = useContext(GameContext);
 
   if (!context) {
-    throw new Error('`useGame` can only be use inside a GameComponent.');
+    throw new Error("`useGame` can only be use inside a GameComponent.");
   }
 
   return context;

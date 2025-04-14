@@ -1,9 +1,9 @@
-import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
-import { Statement } from '../Statement/StatementContext';
-import { useGame } from '../Game/GameContext';
-import { useMeasure } from '@react-hookz/web';
-import { SceneId } from '../Game/GameState';
-import useEventCallback from 'use-event-callback';
+import { ReactNode, createContext, useContext, useMemo, useState } from "react";
+import { Statement } from "../Statement/StatementContext";
+import { useGame } from "../Game/GameContext";
+import { useMeasure } from "@react-hookz/web";
+import { SceneId } from "../Game/GameState";
+import useEventCallback from "use-event-callback";
 
 interface SceneContextType {
   sceneId: SceneId;
@@ -27,7 +27,7 @@ export function SceneProvider({ sceneId, children }: SceneProviderProps) {
   const { currentLocation, goToLocation } = useGame();
 
   const focusedStatementIndex =
-    sceneId === currentLocation.sceneId ? currentLocation.statementIndex : 0;
+    sceneId === currentLocation.sceneId ? currentLocation.statementIdx : 0;
 
   const [statementByIndex] = useState(() => new Map<number, Statement>());
   const [containerRect, containerRef] = useMeasure<HTMLDivElement>();
@@ -63,7 +63,7 @@ export function SceneProvider({ sceneId, children }: SceneProviderProps) {
         focusedStatementIndex,
         registerStatement,
         getStatementByIndex,
-        goToNextStatement
+        goToNextStatement,
       };
     } else {
       return null;
@@ -74,7 +74,7 @@ export function SceneProvider({ sceneId, children }: SceneProviderProps) {
     focusedStatementIndex,
     goToLocation,
     goToNextStatement,
-    statementByIndex
+    statementByIndex,
   ]);
 
   return (
@@ -91,7 +91,7 @@ export function SceneProvider({ sceneId, children }: SceneProviderProps) {
 
         const statement = statementByIndex.get(focusedStatementIndex);
 
-        if (statement?.type.variation.startsWith('skippable')) {
+        if (statement?.type.variation.startsWith("skippable")) {
           const focusedStatement = statementByIndex.get(focusedStatementIndex);
 
           const entered = focusedStatement?.enter() ?? false;
@@ -115,7 +115,7 @@ export function useScene() {
   const context = useContext(SceneContext);
 
   if (!context) {
-    throw new Error('`useScene` can only be use inside a `Game` component.');
+    throw new Error("`useScene` can only be use inside a `Game` component.");
   }
 
   return context;

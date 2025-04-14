@@ -2,7 +2,7 @@ export type SceneId = string;
 
 export interface GameLocation {
   sceneId: SceneId;
-  statementIndex: number;
+  statementIdx: number;
 }
 
 interface GameHistory {
@@ -16,14 +16,14 @@ interface CreateGameHistoryArgs {
 
 export function createGameHistory({
   initialLocations,
-  onLocationsChange
+  onLocationsChange,
 }: CreateGameHistoryArgs): GameHistory {
   let locations = initialLocations;
 
   return {
     push: (newLocation) => {
       locations = [...locations, newLocation];
-      onLocationsChange(locations[locations.length - 1]);
-    }
+      onLocationsChange(newLocation);
+    },
   };
 }
