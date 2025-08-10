@@ -29,7 +29,7 @@ export function ScreenText({ children }: ScreenTextProps) {
           }}
           className='pointer-events-none absolute inset-0'
         >
-          <div className='absolute inset-0 flex items-center justify-center bg-slate-800/80'>
+          <div className='absolute inset-0 flex items-center justify-center bg-gray-950'>
             <div className='px-12 py-8 text-5xl'>{children}</div>
           </div>
         </motion.div>

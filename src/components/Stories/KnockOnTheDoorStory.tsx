@@ -277,7 +277,7 @@ export function KnockOnTheDoorStory() {
   ]);
 
   return (
-    <div className='relative h-screen aspect-video bg-gray-900 overflow-hidden'>
+    <div className='relative h-screen aspect-video bg-gray-950 overflow-hidden'>
       <GameProvider initialSceneId={Scenes.START} scenes={scenes}>
         {(render) => <div>{render()}</div>}
       </GameProvider>
