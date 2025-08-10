@@ -1,3 +1,4 @@
+import ReactLenis from "lenis/react";
 import "./globals.css";
 
 export default function RootLayout({
@@ -7,7 +8,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <ReactLenis root>
+        <body>{children}</body>
+      </ReactLenis>
     </html>
   );
 }
