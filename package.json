@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@react-hookz/web": "^25.0.1",
     "@tailwindcss/postcss": "^4.0.7",
     "@types/node": "22.13.4",
