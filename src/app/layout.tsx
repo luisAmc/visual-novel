@@ -1,4 +1,6 @@
+import ReactLenis from "lenis/react";
 import "./globals.css";
+import { DotCursor } from "~/components/DotCursor";
 
 export default function RootLayout({
   children,
@@ -7,7 +9,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <ReactLenis root>
+        <body>{children}</body>
+      </ReactLenis>
     </html>
   );
 }

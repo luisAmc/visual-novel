@@ -29,7 +29,7 @@ export function TitleScreen({ children }: TitleScreenProps) {
           }}
         >
           <div className='absolute h-full w-full flex items-center justify-center'>
-            <div className='absolute inset-0 bg-gray-900/90'></div>
+            <div className='absolute inset-0 bg-gray-950'></div>
             <div className='absolute flex flex-col items-center'>
               {children}
             </div>

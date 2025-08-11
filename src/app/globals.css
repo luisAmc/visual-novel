@@ -1,7 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+  --text-heading-1: clamp(3.5rem, 2.3571rem + 6vi, 10.5rem);
+  --text-heading-2: clamp(1.9531rem, 1.496rem + 2.2854vi, 3.5529rem);
+  --text-heading-3: clamp(1.5625rem, 1.2474rem + 1.5755vi, 2.6653rem);
+  --text-base: clamp(1rem, 0.928rem + 0.3571vi, 1.25rem);
+}
+
 @layer base {
   body {
     @apply bg-gray-950 text-gray-50 h-svh scroll-smooth text-6xl font-sans antialiased;
+    /* @apply  h-svh scroll-smooth text-6xl font-sans antialiased; */
   }
 }

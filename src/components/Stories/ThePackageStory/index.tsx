@@ -1024,7 +1024,7 @@ export function ThePackageStory() {
     <div
       className={clsx(
         ROBOTO_MONO.className,
-        "relative h-screen aspect-video bg-gray-900 overflow-hidden"
+        "relative h-screen aspect-video bg-gray-950 overflow-hidden"
       )}
     >
       <GameProvider initialSceneId={Scenes.TUTORIAL} scenes={scenes}>
