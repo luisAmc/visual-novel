@@ -19,12 +19,6 @@ export function Intro() {
     () => {
       if (!staticTitleRef.current || !animatedTitleRef.current) return;
 
-      const fromRect = animatedTitleRef.current.getBoundingClientRect();
-      const toRect = staticTitleRef.current.getBoundingClientRect();
-
-      const deltaX = toRect.left - fromRect.left;
-      const deltaY = toRect.top - fromRect.top;
-
       gsap.set(animatedTitleRef.current, { x: 0, y: 0, opacity: 0 });
 
       const tl = gsap.timeline({
@@ -38,8 +32,7 @@ export function Intro() {
         ease: "power2.out",
       })
         .to(animatedTitleRef.current, {
-          x: deltaX,
-          y: deltaY,
+          top: 68,
           duration: 1,
           ease: "power3.inOut",
         })
@@ -54,6 +47,7 @@ export function Intro() {
           {
             opacity: 0,
             duration: 0.1,
+            dislay: "none",
             ease: "power3.out",
           },
           "<"
@@ -64,10 +58,10 @@ export function Intro() {
 
   return (
     <Fragment>
-      <div ref={containerRef} className="flex flex-col px-8 lg:pt-12 lg:pb-28">
+      <div ref={containerRef} className="flex flex-col px-8 pt-12 lg:pb-28">
         <div
           ref={staticTitleRef}
-          className="uppercase font-medium mt-12 mb-4 text-heading-1"
+          className="top-[48px] uppercase font-medium mb-4 text-heading-1"
         >
           Novelas Visuales
         </div>
@@ -82,7 +76,7 @@ export function Intro() {
 
         <div
           ref={animatedTitleRef}
-          className="absolute uppercase font-medium opacity-0 text-heading-1 bottom-12 left-12 text-[#e8e8e3]"
+          className="pointer-events-none absolute uppercase font-medium opacity-0 text-heading-1 bottom-[12vh] left-8 text-[#e8e8e3]"
         >
           Novelas Visuales
         </div>
