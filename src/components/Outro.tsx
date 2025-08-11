@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function Outro() {
   return (
-    <div className="relative w-screen h-[20vh] sm:h-[30vh] p-8 flex items-center justify-center">
+    <div className="relative w-screen h-[20svh] sm:h-[30svh] p-8 flex items-center justify-center">
       <Image
         src="/outro.webp"
         alt="novels characters"
