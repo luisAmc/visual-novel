@@ -1,44 +1,58 @@
+"use client";
+
 import Link from "next/link";
-import { cn } from "~/utils/cn";
+import { useDotCursor } from "~/hooks/useDotCursor";
+
+const stories = [
+  {
+    title: "Visita en el baño",
+    href: "/bathroom-visit",
+  },
+  {
+    title: "Alguien toca la puerta",
+    href: "/knock-on-the-door",
+  },
+  { title: "El Paquete", href: "/the-package" },
+  { title: "CaptureAI", href: "/take-the-photo" },
+];
 
 export function Stories() {
-  const stories = [
-    { title: "Visita en el baño", href: "/bathroom-visit" },
-    { title: "Alguien toca la puerta", href: "/knock-on-the-door" },
-    { title: "El Paquete", href: "/the-package" },
-    { title: "Capture_AI", href: "/take-the-photo" },
-  ];
-
   return (
-    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-6">
-      {stories.map(({ title, href }, i) => (
-        <StoryCard key={href} number={i + 1} title={title} href={href} />
-      ))}
+    <div className="bg-[#101010] sm:m-1 p-8 pt-12 sm:rounded-t-4xl sm:rounded-b-4xl">
+      <h2 className="text-heading-2 text-[#e8e8e3] mb-12">
+        Historias (0{stories.length})
+      </h2>
+
+      <ul>
+        {stories.map((novel, i) => (
+          <NovelCard key={novel.href} index={i} {...novel} />
+        ))}
+      </ul>
     </div>
   );
 }
 
-interface StoryCardProps {
-  number: number;
+interface NovelCardProps {
   title: string;
   href: string;
+  index: number;
 }
 
-export function StoryCard({ number, title, href }: StoryCardProps) {
+function NovelCard({ index, title, href }: NovelCardProps) {
+  const { isHovering } = useDotCursor();
+
   return (
     <Link href={href}>
-      {/* <div className="flex flex-col gap-8 items-center justify-center px-6 py-4 rounded-lg border border-emerald-700 h-[350px] aspect-[5/6] bg-slate-700 hover:scale-105 transition-transform ease-in-out"> */}
-      <div
-        className={cn(
-          "hover:bg-white/15 transition-[background-color] min-h-96 flex flex-col bg-transparent p-6 rounded-lg border items-center justify-center gap-y-4"
-        )}
+      <li
+        onMouseEnter={() => isHovering(true)}
+        onMouseLeave={() => isHovering(false)}
+        className="cursor-pointer border-t-[1px] border-[rgba(57,54,50,1)] text-[#e8e8e3] py-20 flex justify-between px-4"
       >
-        <div className="border rounded-full size-12 flex justify-center items-center text-2xl">
-          {number}
+        <div className="flex items-center gap-x-6">
+          <span className="text-base">(0{index + 1})</span>
+          <header className="text-heading-3">{title}</header>
         </div>
-
-        <div className="text-center text-2xl">{title}</div>
-      </div>
+      </li>
     </Link>
   );
 }
