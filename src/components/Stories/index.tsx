@@ -44,11 +44,11 @@ function NovelCard({ index, title, href }: NovelCardProps) {
   return (
     <Link href={href}>
       <li
-        className="cursor-pointer border-t-[1px] border-[rgba(57,54,50,1)] text-[#e8e8e3] py-20 flex justify-between px-4"
+        className="cursor-pointer border-t-[1px] border-[rgba(57,54,50,1)] text-[#e8e8e3] py-20 flex justify-between px-4 group"
         onMouseEnter={() => isHovering(true)}
         onMouseLeave={() => isHovering(false)}
       >
-        <div className="flex items-center gap-x-6">
+        <div className="flex items-center gap-x-6 group-hover:mx-8 transition-[margin]">
           <span className="text-base">(0{index + 1})</span>
           <header className="text-heading-3">{title}</header>
         </div>

@@ -26,12 +26,15 @@ interface DotCursorProviderProps {
 export function DotCursorProvider({ children }: DotCursorProviderProps) {
   const [_isHovering, setIsHovering] = useState(false);
 
-  //   console.log({ _isHovering });
-
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    setPosition({
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+    });
+
     document.addEventListener("mousemove", (e) => {
       const mouseX = e.pageX;
       const mouseY = e.pageY;

@@ -38,7 +38,7 @@ export function Intro() {
         })
         .to(overlayRef.current, {
           opacity: 0,
-          duration: 0.5,
+          duration: 1,
           display: "none",
           ease: "power2.out",
         })
@@ -46,6 +46,7 @@ export function Intro() {
           animatedTitleRef.current,
           {
             opacity: 0,
+            height: 0,
             duration: 0.1,
             dislay: "none",
             ease: "power3.out",
