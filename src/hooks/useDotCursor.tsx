@@ -35,7 +35,7 @@ export function DotCursorProvider({ children }: DotCursorProviderProps) {
       y: window.innerHeight / 2,
     });
 
-    document.addEventListener("mousemove", (e) => {
+    document.addEventListener("pointermove", (e) => {
       const mouseX = e.pageX;
       const mouseY = e.pageY;
 
