@@ -8,7 +8,7 @@ import useScrollLock from "~/hooks/useScrollLock";
 gsap.registerPlugin(useGSAP);
 
 export function Intro() {
-  const { unlock } = useScrollLock();
+  const { unlock: unlockScroll } = useScrollLock();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const staticTitleRef = useRef<HTMLDivElement>(null);
@@ -22,7 +22,7 @@ export function Intro() {
       gsap.set(animatedTitleRef.current, { x: 0, y: 0, opacity: 0 });
 
       const tl = gsap.timeline({
-        onComplete: unlock,
+        onComplete: unlockScroll,
       });
 
       tl.to(animatedTitleRef.current, {
@@ -41,6 +41,7 @@ export function Intro() {
           duration: 1,
           display: "none",
           ease: "power2.out",
+          pointerEvents: "none",
         })
         .to(
           animatedTitleRef.current,
