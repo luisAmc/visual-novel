@@ -26,25 +26,7 @@ interface DotCursorProviderProps {
 export function DotCursorProvider({ children }: DotCursorProviderProps) {
   const [_isHovering, setIsHovering] = useState(false);
 
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setPosition({
-      x: window.innerWidth / 2,
-      y: window.innerHeight / 2,
-    });
-
-    document.addEventListener("pointermove", (e) => {
-      const mouseX = e.pageX;
-      const mouseY = e.pageY;
-
-      setTimeout(() => {
-        setPosition({ x: mouseX, y: mouseY });
-        setIsVisible(true);
-      }, 75);
-    });
-  }, []);
+  const { x, y, isIdle } = useMousePosition();
 
   const context: DotCursorContextType = {
     isHovering: (val: boolean) => {
@@ -60,8 +42,8 @@ export function DotCursorProvider({ children }: DotCursorProviderProps) {
           _isHovering ? "size-12" : "size-4"
         )}
         style={{
-          transform: `translate(${position.x}px, ${position.y}px)`,
-          opacity: isVisible ? 1 : 0,
+          transform: `translate(${x}px, ${y}px)`,
+          opacity: isIdle ? 0 : 1,
           transition: "transform 0.1s, opacity 0.2s",
         }}
         animate={{
@@ -87,4 +69,42 @@ export function useDotCursor() {
   }
 
   return context;
+}
+
+function useMousePosition() {
+  const [isIdle, setIsIdle] = useState(true);
+
+  const [position, setPosition] = useState({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  });
+
+  useEffect(() => {
+    let positionHandler: NodeJS.Timeout;
+    let idleHandler: NodeJS.Timeout;
+
+    const idleTimer = () => {
+      setIsIdle(false);
+      clearTimeout(idleHandler);
+      idleHandler = setTimeout(() => setIsIdle(true), 1_000);
+    };
+
+    const handlePointerMove = ({ pageX, pageY }: MouseEvent) => {
+      positionHandler = setTimeout(() => {
+        setPosition({ x: pageX, y: pageY });
+      }, 75);
+
+      idleTimer();
+    };
+
+    window.addEventListener("pointermove", handlePointerMove);
+
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      clearTimeout(positionHandler);
+      clearTimeout(idleHandler);
+    };
+  }, []);
+
+  return { ...position, isIdle };
 }
