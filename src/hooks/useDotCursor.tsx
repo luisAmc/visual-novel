@@ -37,14 +37,11 @@ export function DotCursorProvider({ children }: DotCursorProviderProps) {
   return (
     <DotCursorContext.Provider value={context}>
       <motion.div
-        className={cn(
-          "absolute hidden sm:flex items-center justify-center bg-[#e8e8e3] rounded-full pointer-events-none z-10 mix-blend-difference",
-          _isHovering ? "size-12" : "size-4"
-        )}
+        className="absolute hidden sm:flex items-center justify-center bg-[#e8e8e3] rounded-full pointer-events-none z-10 mix-blend-difference"
         style={{
           transform: `translate(${x}px, ${y}px)`,
-          opacity: isIdle ? 0 : 1,
           transition: "transform 0.1s, opacity 0.2s",
+          opacity: isIdle ? 0 : 1,
         }}
         animate={{
           width: _isHovering ? "3rem" : "1rem",
@@ -74,10 +71,14 @@ export function useDotCursor() {
 function useMousePosition() {
   const [isIdle, setIsIdle] = useState(true);
 
-  const [position, setPosition] = useState({
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
-  });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    setPosition({
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+    });
+  }, []);
 
   useEffect(() => {
     let positionHandler: NodeJS.Timeout;
@@ -86,7 +87,7 @@ function useMousePosition() {
     const idleTimer = () => {
       setIsIdle(false);
       clearTimeout(idleHandler);
-      idleHandler = setTimeout(() => setIsIdle(true), 1_000);
+      idleHandler = setTimeout(() => setIsIdle(true), 5_000);
     };
 
     const handlePointerMove = ({ pageX, pageY }: MouseEvent) => {
