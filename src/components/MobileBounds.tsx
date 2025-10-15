@@ -1,8 +1,11 @@
-import { Measures, useMeasure, useWindowSize } from "@react-hookz/web";
+"use client";
+
 import {
   createContext,
   useContext,
   useEffect,
+  useLayoutEffect,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -10,7 +13,7 @@ import {
 const MD_BREAKPOINT = 768;
 
 interface MobileBoundsContextType {
-  rect?: Measures;
+  dimensions: { width: number; height: number };
   ratio: number;
   setRatio: (ratio: number) => void;
   isMD: boolean;
@@ -25,37 +28,45 @@ interface MobileBoundsProps {
 }
 
 export function MobileBounds({ children }: MobileBoundsProps) {
-  const [containerRect, containerRef] = useMeasure<HTMLDivElement>();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerDimensions, setContainerDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
 
-  // _, true to measure onMount, solves SSR height 0
-  const windowSize = useWindowSize(undefined, true);
+  useLayoutEffect(() => {
+    if (!containerRef.current) {
+      return;
+    }
+
+    const rect = containerRef.current.getBoundingClientRect();
+
+    setContainerDimensions({
+      width: Math.round(rect.width),
+      height: Math.round(rect.height),
+    });
+  }, [containerRef.current]);
 
   const [ratio, setRatio] = useState(0);
-
-  const isMD = (containerRect?.width ?? 0) < MD_BREAKPOINT;
 
   return (
     <MobileBoundsContext.Provider
       value={{
-        rect: containerRect,
+        dimensions: containerDimensions,
         ratio,
         setRatio,
-        isMD: (containerRect?.width ?? 0) < MD_BREAKPOINT,
+        isMD: containerDimensions.width < MD_BREAKPOINT,
       }}
     >
       <div
         ref={containerRef}
-        className="flex w-screen flex-col bg-teal-100"
-        style={{ height: windowSize.height }}
+        className="flex w-screen flex-col bg-teal-100 h-svh"
       >
-        {containerRect &&
-          (isMD ? (
-            children
-          ) : (
-            <div className="flex h-full w-full flex-col items-center justify-center bg-green-100">
-              <SmallRender>{children}</SmallRender>
-            </div>
-          ))}
+        <div className="block md:hidden">{children}</div>
+
+        <div className="md:flex hidden h-full w-full flex-col items-center justify-center bg-green-100">
+          <SmallRender>{children}</SmallRender>
+        </div>
       </div>
     </MobileBoundsContext.Provider>
   );
@@ -78,8 +89,8 @@ interface SmallRenderProps {
 }
 
 function SmallRender({ children }: SmallRenderProps) {
-  const { rect, setRatio } = useMobileBounds();
-  const height = (rect?.height ?? 0) - 2 * 32;
+  const { dimensions, setRatio } = useMobileBounds();
+  const height = dimensions.height - 2 * 32;
   const ratio = height / 451;
 
   useEffect(() => {
